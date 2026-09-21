@@ -13,7 +13,8 @@ body{background:#fff8f0;padding-bottom:110px}
 .search{margin:12px 16px;background:#fff;border:1.5px solid #ffd1a6;padding:12px 16px;border-radius:14px;display:flex;gap:8px}
 .search input{border:0;outline:0;width:100%;font-size:14px}
 .cats{display:flex;gap:12px;padding:8px 16px;overflow:auto}.cats::-webkit-scrollbar{display:none}
-.catItem{text-align:center;min-width:60px}
+.catItem{text-align:center;min-width:60px;cursor:pointer;opacity:0.7;border-bottom:3px solid transparent;padding-bottom:6px;transition:0.2s}
+.catItem.active{opacity:1;border-bottom:3px solid #FF6A00;color:#FF6A00}
 .catIcon{width:52px;height:52px;background:#fff3e8;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;border:1px solid #ffe0c0}
 .catItem p{font-size:11px;font-weight:700;margin-top:5px}
 .filters{display:flex;gap:8px;padding:10px 16px;overflow:auto}.filters::-webkit-scrollbar{display:none}
@@ -40,12 +41,13 @@ body{background:#fff8f0;padding-bottom:110px}
 <div class="search">🔍<input id="searchBox" placeholder="Search Atta, Oil, Sabji..." onkeyup="doSearch()"></div>
 
 <div class="cats">
-<div class="catItem"><div class="catIcon">🌾</div><p>Atta</p></div>
-<div class="catItem"><div class="catIcon">🛢️</div><p>Oil</p></div>
-<div class="catItem"><div class="catIcon">🌶️</div><p>Masala</p></div>
-<div class="catItem"><div class="catIcon">🧹</div><p>Garbage</p></div>
-<div class="catItem"><div class="catIcon">🦟</div><p>Coil</p></div>
-<div class="catItem"><div class="catIcon">🥦</div><p>Veg</p></div>
+<div class="catItem active" onclick="filterIcon('all',this)"><div class="catIcon">🌿</div><p>All</p></div>
+<div class="catItem" onclick="filterIcon('rice',this)"><div class="catIcon">🌾</div><p>Chal</p></div>
+<div class="catItem" onclick="filterIcon('oil',this)"><div class="catIcon">🛢️</div><p>Oil</p></div>
+<div class="catItem" onclick="filterIcon('masala',this)"><div class="catIcon">🌶️</div><p>Masala</p></div>
+<div class="catItem" onclick="filterIcon('garbage',this)"><div class="catIcon">🧹</div><p>Garbage</p></div>
+<div class="catItem" onclick="filterIcon('coil',this)"><div class="catIcon">🦟</div><p>Coil</p></div>
+<div class="catItem" onclick="filterIcon('veg',this)"><div class="catIcon">🥦</div><p>Veg</p></div>
 </div>
 
 <div class="filters">
@@ -59,15 +61,31 @@ body{background:#fff8f0;padding-bottom:110px}
 <div id="basket"><span>🧺 Rs.<span id="bTotal">0</span> (<span id="bCount">0</span>)</span><button onclick="showCart()" style="background:#fff;color:#FF6A00;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart</button></div>
 
 <script>
-let items=[{name:"Product er Nam", price: 100, cat:"grocery", img:""},
-{name:"Fresh Tomato 1kg",price:30,mrp:40,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-{name:"Potato 1kg",price:25,mrp:32,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1518977676608-bd36c2ca4f0d?w=300"},
-{name:"Fortune Mustard Oil 1L",price:165,mrp:195,cat:"veg",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
-{name:"Aashirvaad Atta 5kg",price:275,mrp:320,cat:"veg",unit:"bag",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
-{name:"Garbage Bag Roll",price:49,mrp:69,cat:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=300"},
-{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=300"},
+let curIcon='all';
+let curMain='all';
+let items=[
+{name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"https://images.unsplash.com/photo-1586201375761-386f3f6d59d8?w=300"},
+{name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=300"},
+{name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
+{name:"94 Number Chal 25kg",price:1050,mrp:1200,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
+{name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=300"},
+{name:"RAHAMAN Miniket 25kg",price:1320,mrp:1500,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=300"},
+{name:"Taba Dhar Chal 10kg",price:520,mrp:600,cat:"veg",sub:"rice",unit:"bag",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
+{name:"Fortune Mustard Oil 1L",price:165,mrp:195,cat:"veg",sub:"oil",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
+{name:"Saffola Gold Oil 1L",price:175,mrp:200,cat:"veg",sub:"oil",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
+{name:"Sada Tel 1L",price:145,mrp:170,cat:"veg",sub:"oil",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
+{name:"Holud Masala 100g",price:32,mrp:40,cat:"veg",sub:"masala",unit:"pc",img:"https://images.unsplash.com/photo-1506368249639-73a05d4f6488?w=300"},
+{name:"Morich Masala 100g",price:38,mrp:48,cat:"veg",sub:"masala",unit:"pc",img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300"},
+{name:"Jeera Masala 100g",price:45,mrp:55,cat:"veg",sub:"masala",unit:"pc",img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300"},
+{name:"Fresh Tomato 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
+{name:"Potato 1kg",price:25,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1518977676608-bd36c2ca4f0d?w=300"},
+{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=300"},
+{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",sub:"coil",unit:"pc",img:"https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=300"},
+{name:"Lays Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300"},
+{name:"Coca Cola 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1553456558-aff63285bdd1?w=300"},
 ];
 let qtyList=items.map(()=>1);let cart={},total=0;let listDiv=document.getElementById('list');
+
 function render(all){
  listDiv.innerHTML="";
  all.forEach((p)=>{
@@ -75,13 +93,24 @@ function render(all){
   listDiv.innerHTML+=`<div class="card"><div class="off">${off}% OFF</div><img src="${p.img}"><h3>${p.name}</h3><div class="priceRow"><b>₹${p.price}</b><s>₹${p.mrp}</s><span>${off}% OFF</span></div><div class="qty"><button onclick="changeQ(${i},-1)">−</button><b id="q${i}">${qtyList[i]} ${p.unit}</b><button onclick="changeQ(${i},1)">+</button></div><button class="addBtn" onclick="add(${i})">ADD</button></div>`;
  });
 }
+function applyFilters(){
+ let search=document.getElementById('searchBox').value.toLowerCase();
+ let filtered=items.filter(x=>{
+   let matchIcon = curIcon=='all' || x.sub==curIcon;
+   let matchMain = curMain=='all' || x.cat==curMain;
+   let matchSearch = x.name.toLowerCase().includes(search);
+   return matchIcon && matchMain && matchSearch;
+ });
+ render(filtered);
+}
 function changeQ(i,d){qtyList[i]=Math.max(1,qtyList[i]+d);document.getElementById('q'+i).innerText=qtyList[i]+" "+items[i].unit;}
+function filterIcon(sub,el){document.querySelectorAll('.catItem').forEach(b=>b.classList.remove('active'));el.classList.add('active');curIcon=sub;applyFilters();}
+function doFilter(cat,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');curMain=cat;applyFilters();}
+function doSearch(){applyFilters();}
 render(items);
 function add(i){let p=items[i];if(!cart[p.name])cart[p.name]={q:0,price:p.price};cart[p.name].q+=qtyList[i];update();}
 function update(){total=0;let c=0;for(let k in cart){total+=cart[k].q*cart[k].price;c+=cart[k].q;}document.getElementById('bTotal').innerText=total;document.getElementById('bCount').innerText=c;document.getElementById('gt').innerText=total;document.getElementById('basket').style.display=c>0?"flex":"none";let h="";for(let k in cart){h+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}<br>`;}document.getElementById('cartItems').innerHTML=h;}
 function showCart(){document.getElementById('cartPage').style.display='block';window.scrollTo(0,9999);}
-function doSearch(){let v=document.getElementById('searchBox').value.toLowerCase();render(items.filter(x=>x.name.toLowerCase().includes(v)));}
-function doFilter(cat,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(cat=='all')render(items);else render(items.filter(x=>x.cat==cat));}
 function sendWA(){let n=document.getElementById('cName').value;let ph=document.getElementById('cPhone').value;let a=document.getElementById('cAddr').value;if(!n||!ph){alert("Name Phone din");return;}let msg=`*New Order ROOP*%0AName:${n}%0APhone:${ph}%0AAddr:${a}%0A%0A`;for(let k in cart){msg+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}%0A`;}msg+=`%0ATotal: Rs.${total}`;window.open(`https://wa.me/917584036364?text=${msg}`);}
 </script>
 </body>
