@@ -64,26 +64,21 @@ body{background:#fff8f0;padding-bottom:110px}
 let curIcon='all';
 let curMain='all';
 let items=[
-{name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"https://images.unsplash.com/photo-1586201375761-386f3f6d59d8?w=300"},
-{name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=300"},
-{name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
-{name:"94 Number Chal 25kg",price:1050,mrp:1200,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
-{name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=300"},
-{name:"RAHAMAN Miniket 25kg",price:1320,mrp:1500,cat:"veg",sub:"rice",unit:"bosta",img:"https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=300"},
-{name:"Taba Dhar Chal 10kg",price:520,mrp:600,cat:"veg",sub:"rice",unit:"bag",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
-{name:"Fortune Mustard Oil 1L",price:165,mrp:195,cat:"veg",sub:"oil",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
-{name:"Saffola Gold Oil 1L",price:175,mrp:200,cat:"veg",sub:"oil",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
-{name:"Sada Tel 1L",price:145,mrp:170,cat:"veg",sub:"oil",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
-{name:"Holud Masala 100g",price:32,mrp:40,cat:"veg",sub:"masala",unit:"pc",img:"https://images.unsplash.com/photo-1506368249639-73a05d4f6488?w=300"},
-{name:"Morich Masala 100g",price:38,mrp:48,cat:"veg",sub:"masala",unit:"pc",img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300"},
-{name:"Jeera Masala 100g",price:45,mrp:55,cat:"veg",sub:"masala",unit:"pc",img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300"},
-{name:"Fresh Tomato 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-{name:"Potato 1kg",price:25,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1518977676608-bd36c2ca4f0d?w=300"},
-{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=300"},
-{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",sub:"coil",unit:"pc",img:"https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=300"},
-{name:"Lays Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300"},
-{name:"Coca Cola 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1553456558-aff63285bdd1?w=300"},
+{name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"images/basmati.jpg"},
+{name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"images/tuli.jpg"},
+{name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"images/44.jpg"},
+{name:"94 Number Chal 25kg",price:1050,mrp:1200,cat:"veg",sub:"rice",unit:"bosta",img:"images/94.jpg"},
+{name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"images/kilikoli.jpg"},
+{name:"RAHAMAN Miniket 25kg",price:1320,mrp:1500,cat:"veg",sub:"rice",unit:"bosta",img:"images/rahaman.jpg"},
+{name:"Taba Dhar Chal 10kg",price:520,mrp:600,cat:"veg",sub:"rice",unit:"bag",img:"images/taba.jpg"},
+{name:"Fortune Mustard Oil 1L",price:165,mrp:195,cat:"veg",sub:"oil",unit:"ltr",img:"images/mustard.jpg"},
+{name:"Sada Tel 1L",price:145,mrp:170,cat:"veg",sub:"oil",unit:"ltr",img:"images/sada.jpg"},
+{name:"Holud Masala 100g",price:32,mrp:40,cat:"veg",sub:"masala",unit:"pc",img:"images/haldi.jpg"},
+{name:"Morich Masala 100g",price:38,mrp:48,cat:"veg",sub:"masala",unit:"pc",img:"images/morich.jpg"},
+{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"images/garbage.jpg"},
+{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",sub:"coil",unit:"pc",img:"images/coil.jpg"},
 ];
+ 
 let qtyList=items.map(()=>1);let cart={},total=0;let listDiv=document.getElementById('list');
 
 function render(all){
