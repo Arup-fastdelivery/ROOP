@@ -1,75 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROOP Fresh - Hemtabad</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROOP - All in One Store</title>
 <style>
-body{margin:0;background:#e8f5e9;font-family:Arial;padding-bottom:120px}
-.header{background:#2e7d32;color:white;padding:15px;display:flex;justify-content:space-between}
-.search{margin:10px;background:white;padding:10px;border-radius:10px;display:flex;gap:5px}
-.search input{border:none;width:100%;outline:none}
-.filters{display:flex;gap:8px;padding:10px;overflow-x:auto}
-.filters button{border:none;padding:8px 15px;border-radius:20px;background:white;white-space:nowrap}
-.filters button.active{background:#2e7d32;color:white}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:white;border-radius:15px;padding:10px;text-align:center}
-.card img{width:80px;height:80px}
-.price{color:#2e7d32;font-weight:bold;margin:5px 0}
-.card button{width:100%;background:#2e7d32;color:white;border:none;padding:8px;border-radius:15px;margin-top:5px}
-#basket{position:fixed;bottom:10px;left:10px;right:10px;background:#2e7d32;color:white;padding:15px;border-radius:15px;display:none;justify-content:space-between}
-#cartPage{display:none;background:white;margin:10px;padding:15px;border-radius:15px}
-#cartPage input, #cartPage textarea{width:100%;padding:10px;margin:5px 0;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+  body{background:#f0faf0}
+ .header{padding:12px 16px;display:flex;align-items:center;gap:10px;background:#fff;position:sticky;top:0;z-index:10}
+ .logo{width:42px;height:42px;border-radius:10px;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:22px}
+ .header h1{font-size:18px;line-height:1}
+ .header p{font-size:11px;color:#666}
+ .search{margin:12px 16px;background:#fff;border-radius:14px;padding:12px 14px;display:flex;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+ .search input{border:0;outline:0;width:100%;font-size:15px}
+ .cats{display:flex;gap:10px;padding:0 16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+ .cats::-webkit-scrollbar{display:none}
+ .cat{padding:10px 18px;border-radius:24px;background:#fff;border:1px solid #eee;font-size:14px;font-weight:600;color:#0a8a3a;cursor:pointer}
+ .cat.active{background:#0a8a3a;color:#fff}
+ .banner{margin:16px;border-radius:18px;background:linear-gradient(90deg,#c8e6c9 0%,#e8f5e9 60%,#fff 100%);padding:16px;display:flex;align-items:center;justify-content:space-between;overflow:hidden}
+ .banner h2{color:#1b5e20;font-size:20px;line-height:1.1}
+ .banner p{font-size:11px;color:#333;margin:4px 0 8px}
+ .banner button{padding:6px 14px;border-radius:20px;border:0;background:#fff;font-size:12px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+ .banner img{width:150px;height:80px;object-fit:cover;border-radius:10px}
+ .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 100px}
+ .card{background:#fff;border-radius:18px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,0.04);text-align:left}
+ .card img{width:100%;height:100px;object-fit:contain;background:#f9f9f9;border-radius:12px}
+ .card h3{font-size:15px;margin:8px 0 2px}
+ .price{color:#0a8a3a;font-weight:800;font-size:15px}.price span{color:#777;font-weight:400;font-size:12px}
+ .qty{display:flex;align-items:center;justify-content:center;gap:14px;margin:10px 0 4px}
+ .qty button{width:28px;height:28px;border-radius:50%;border:1px solid #c8e6c9;background:#e8f5e9;font-size:16px;font-weight:700;color:#0a8a3a}
+ .qty b{font-size:15px}
+ .total{font-size:12px;text-align:center;color:#333;margin-bottom:8px;font-weight:600}
+ .add{width:100%;padding:10px;background:#0a8a3a;color:#fff;border:0;border-radius:22px;font-weight:700;font-size:14px}
 </style>
 </head>
 <body>
-<div class="header"><b>🟢 ROOP Fresh</b><span>📍 Hemtabad</span></div>
-<div class="search">🔍<input id="searchBox" placeholder="Search..." onkeyup="doSearch()"></div>
-<div class="filters">
-<button class="active" onclick="doFilter('all',this)">All</button>
-<button onclick="doFilter('veg',this)">Veg</button>
-<button onclick="doFilter('snacks',this)">Snacks</button>
-<button onclick="doFilter('drinks',this)">Drinks</button>
+<div class="header">
+  <div class="logo">🥬</div>
+  <div><h1>ROOP</h1><p>All in One Store</p></div>
 </div>
-<div class="products" id="list"></div>
-<div id="cartPage">
-<h3>🛒 My Order</h3>
-<div id="cartItems"></div>
-<p><b>Total: Rs.<span id="gt">0</span></b></p>
-<input id="cName" placeholder="Your Name">
-<input id="cPhone" placeholder="Phone Number">
-<textarea id="cAddr" placeholder="Full Address"></textarea>
-<button onclick="sendWA()" style="width:100%;background:#25D366;color:white;padding:12px;border:none;border-radius:10px;font-weight:bold">Order on WhatsApp</button>
-<button onclick="document.getElementById('cartPage').style.display='none'" style="width:100%;margin-top:5px;padding:8px;border:none;background:#eee;border-radius:10px">Close</button>
+
+<div class="search">🔍 <input placeholder="Search anything..."></div>
+
+<div class="cats">
+  <div class="cat active">🌿 All</div>
+  <div class="cat">🛒 Grocery & Kitchen</div>
+  <div class="cat">🥤 Snacks & Drinks</div>
 </div>
-<div id="basket"><span>🧺 Rs.<span id="bTotal">0</span> (<span id="bCount">0</span> items)</span><button onclick="showCart()" style="background:white;color:#2e7d32;border:none;padding:8px 15px;border-radius:20px;font-weight:bold">View Cart</button></div>
+
+<div class="banner">
+  <div>
+    <h2>Fresh<br>Healthy<br>Natural</h2>
+    <p>100% Fresh &<br>Original Products</p>
+    <button>Shop Now →</button>
+  </div>
+  <img src="https://images.unsplash.com/photo-1610831098506-eaaff1d53e4e?w=300">
+</div>
+
+<div class="grid" id="grid"></div>
+
 <script>
-let items=[
-{name:"Tomato",price:30,cat:"veg",img:"🍅"},
-{name:"Potato",price:25,cat:"veg",img:"🥔"},
-{name:"Onion",price:45,cat:"veg",img:"🧅"},
-{name:"Brinjal",price:40,cat:"veg",img:"🍆"},
-{name:"Milk",price:32,cat:"veg",img:"🥛"},
-{name:"Eggs 12pc",price:84,cat:"veg",img:"🥚"},
-{name:"Lays Chips",price:20,cat:"snacks",img:"🍟"},
-{name:"Coca Cola",price:40,cat:"drinks",img:"🥤"},
-{name:"Biryani",price:150,cat:"snacks",img:"🍛"},
-{name:"Momos",price:50,cat:"snacks",img:"🥟"},
-];
-let cart={},total=0;
-let listDiv=document.getElementById('list');
-function render(all){
-listDiv.innerHTML="";
-all.forEach((p,i)=>{
-listDiv.innerHTML+=`<div class="card" data-cat="${p.cat}"><div style="font-size:50px">${p.img}</div><b>${p.name}</b><div class="price">₹${p.price}</div><button onclick="add(${i})">Add to Cart</button></div>`;
+const products=[
+ {name:"Tomato",price:30,img:"https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
+ {name:"Potato",price:25,img:"https://images.unsplash.com/photo-1518977676608-bd36c2ca4f0d?w=300"},
+ {name:"Onion",price:45,img:"https://images.unsplash.com/photo-1508747703725-719777637510?w=300"},
+ {name:"Brinjal",price:40,img:"https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=300"},
+]
+const grid=document.getElementById('grid');
+products.forEach((p,i)=>{
+  grid.innerHTML+=`
+  <div class="card">
+    <img src="${p.img}">
+    <h3>${p.name}</h3>
+    <div class="price">₹${p.price}<span>/kg</span></div>
+    <div class="qty">
+      <button onclick="change(${i},-1)">-</button>
+      <b id="q${i}">1 kg</b>
+      <button onclick="change(${i},1)">+</button>
+    </div>
+    <div class="total" id="t${i}">Total: ₹${p.price}</div>
+    <button class="add">🛒 Add</button>
+  </div>`
 });
+let qtys=[1,1,1,1];
+function change(i,d){
+ qtys[i]=Math.max(1,qtys[i]+d);
+ document.getElementById('q'+i).innerText=qtys[i]+' kg';
+ document.getElementById('t'+i).innerText='Total: ₹'+(qtys[i]*products[i].price);
 }
-render(items);
-function add(i){let p=items[i];if(!cart[p.name])cart[p.name]={q:0,price:p.price};cart[p.name].q++;update();}
-function update(){total=0;let c=0;for(let k in cart){total+=cart[k].q*cart[k].price;c+=cart[k].q;}document.getElementById('bTotal').innerText=total;document.getElementById('bCount').innerText=c;document.getElementById('gt').innerText=total;document.getElementById('basket').style.display=c>0?"flex":"none";let html="";for(let k in cart){html+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}<br>`;}document.getElementById('cartItems').innerHTML=html;}
-function showCart(){document.getElementById('cartPage').style.display='block';window.scrollTo(0,document.body.scrollHeight);}
-function doSearch(){let v=document.getElementById('searchBox').value.toLowerCase();let f=items.filter(x=>x.name.toLowerCase().includes(v));render(f);}
-function doFilter(cat,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(cat=='all')render(items);else render(items.filter(x=>x.cat==cat));}
-function sendWA(){let name=document.getElementById('cName').value;let phone=document.getElementById('cPhone').value;let addr=document.getElementById('cAddr').value;if(!name||!phone){alert("Name Phone din");return;}let msg=`*New Order ROOP Fresh*%0AName: ${name}%0APhone: ${phone}%0AAddr: ${addr}%0A%0A`;for(let k in cart){msg+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}%0A`;}msg+=`%0ATotal: Rs.${total}`;window.open(`https://wa.me/917584036364?text=${msg}`);}
 </script>
 </body>
 </html>
