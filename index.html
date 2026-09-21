@@ -2,128 +2,87 @@
 <html>
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROOP - All in One Store</title>
+<title>ROOP - All in One Delivery in 10 Mins</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#f1f8e9;padding-bottom:110px}
-.header{background:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:20}
-.logo{width:44px;height:44px;border-radius:12px;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:24px}
-.header h1{font-size:18px}.header p{font-size:11px;color:#666}
-.search{margin:12px 16px;background:#fff;padding:13px 16px;border-radius:16px;display:flex;gap:8px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.search input{border:0;outline:0;width:100%;font-size:15px}
-.filters{display:flex;gap:10px;padding:0 16px;overflow:auto}.filters::-webkit-scrollbar{display:none}
-.filters button{border:1px solid #e0e0e0;background:#fff;padding:10px 16px;border-radius:25px;font-weight:700;font-size:13px;white-space:nowrap;color:#2e7d32}
-.filters button.active{background:#2e7d32;color:#fff;border-color:#2e7d32}
-.banner{margin:16px;background:linear-gradient(90deg,#c5e1a5,#f1f8e9);border-radius:20px;padding:16px;display:flex;justify-content:space-between;align-items:center}
-.banner h2{color:#1b5e20;font-size:22px;line-height:1.1}.banner p{font-size:11px;margin:6px 0 10px}
-.banner button{border:0;background:#fff;padding:6px 14px;border-radius:20px;font-weight:700;font-size:12px;box-shadow:0 2px 5px rgba(0,0,0,.1)}
-.banner img{width:165px;height:92px;object-fit:cover;border-radius:14px}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
-.card{background:#fff;border-radius:20px;padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.card img{width:100%;height:110px;object-fit:contain;background:#fafafa;border-radius:14px}
-.card h3{font-size:14px;margin:8px 0 2px}
-.price{color:#2e7d32;font-weight:800}.price span{color:#888;font-weight:400;font-size:12px}
-.qty{display:flex;align-items:center;justify-content:center;gap:12px;margin:10px 0 4px;background:#f6fbf3;padding:6px;border-radius:20px}
-.qty button{width:28px;height:28px;border-radius:50%;border:1px solid #c8e6c9;background:#fff;font-weight:800;color:#2e7d32}
-.qty b{font-size:14px}
-.total{font-size:11px;text-align:center;font-weight:700;color:#333;margin-bottom:8px}
-.addBtn{width:100%;background:#2e7d32;color:#fff;border:0;padding:11px;border-radius:24px;font-weight:800}
-#basket{position:fixed;bottom:14px;left:14px;right:14px;background:#2e7d32;color:#fff;padding:14px 18px;border-radius:18px;display:none;justify-content:space-between;align-items:center;z-index:30;box-shadow:0 6px 20px rgba(0,0,0,.3)}
-#cartPage{display:none;background:#fff;margin:16px;padding:16px;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-#cartPage input,#cartPage textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}
+body{background:#fff8f0;padding-bottom:110px}
+.header{background:#fff;padding:12px 16px;position:sticky;top:0;z-index:20;border-bottom:1px solid #ffe0c0;display:flex;align-items:center;gap:10px}
+.logo{width:44px;height:44px;border-radius:12px;background:#FF6A00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px}
+.header h1{font-size:16px;line-height:1.1}.header h1 span{color:#FF6A00}
+.header p{font-size:11px;color:#666;font-weight:600}
+.search{margin:12px 16px;background:#fff;border:1.5px solid #ffd1a6;padding:12px 16px;border-radius:14px;display:flex;gap:8px}
+.search input{border:0;outline:0;width:100%;font-size:14px}
+.cats{display:flex;gap:12px;padding:8px 16px;overflow:auto}.cats::-webkit-scrollbar{display:none}
+.catItem{text-align:center;min-width:60px}
+.catIcon{width:52px;height:52px;background:#fff3e8;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;border:1px solid #ffe0c0}
+.catItem p{font-size:11px;font-weight:700;margin-top:5px}
+.filters{display:flex;gap:8px;padding:10px 16px;overflow:auto}.filters::-webkit-scrollbar{display:none}
+.filters button{border:1px solid #ffd1a6;background:#fff;padding:8px 14px;border-radius:20px;font-weight:700;font-size:12px;white-space:nowrap}
+.filters button.active{background:#FF6A00;color:#fff;border-color:#FF6A00}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 16px}
+.card{background:#fff;border:1px solid #f0f0f0;border-radius:18px;padding:10px;position:relative;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.off{position:absolute;top:8px;left:8px;background:#256fef;color:#fff;font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px}
+.card img{width:100%;height:105px;object-fit:contain;background:#fff;border-radius:12px;margin-top:10px}
+.card h3{font-size:13px;margin:8px 0 2px;height:32px;overflow:hidden}
+.priceRow{display:flex;gap:6px;align-items:center;margin:4px 0}
+.priceRow b{font-size:14px}.priceRow s{font-size:11px;color:#999}.priceRow span{font-size:10px;color:#fff;background:#2e7d32;padding:2px 5px;border-radius:4px;font-weight:700}
+.qty{display:flex;align-items:center;justify-content:space-between;background:#fff7f0;border:1px solid #ffd1a6;padding:5px 8px;border-radius:20px;margin:8px 0}
+.qty button{width:26px;height:26px;border-radius:50%;border:0;background:#FF6A00;color:#fff;font-weight:800}
+.qty b{font-size:13px}
+.addBtn{width:100%;background:#fff;border:1.5px solid #FF6A00;color:#FF6A00;padding:9px;border-radius:12px;font-weight:900}
+#basket{position:fixed;bottom:12px;left:12px;right:12px;background:#FF6A00;color:#fff;padding:14px 18px;border-radius:16px;display:none;justify-content:space-between;z-index:30}
+#cartPage{display:none;background:#fff;margin:12px;padding:16px;border-radius:18px}
+#cartPage input,#cartPage textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:10px}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo">🥦</div><div><h1>ROOP</h1><p>All in One Store</p></div></div>
-<div class="search">🔍<input id="searchBox" placeholder="Search anything..." onkeyup="doSearch()"></div>
-<div class="filters">
-<button class="active" onclick="doFilter('all',this)">🌿 All</button>
-<button onclick="doFilter('veg',this)">🛒 Grocery & Kitchen</button>
-<button onclick="doFilter('snacks',this)">🥤 Snacks & Drinks</button>
-</div>
-<div class="banner">
-<div><h2>Fresh<br>Healthy<br>Natural</h2><p>100% Fresh &<br>Original Products</p><button>Shop Now →</button></div>
-<img src="https://images.unsplash.com/photo-1610831098506-eaaff1d53e4e?w=400">
-</div>
-<div class="products" id="list"></div>
+<div class="header"><div class="logo">R</div><div><h1>ROOP <span>All in One</span></h1><p>⚡ Delivery in 10 Mins | Hemtabad</p></div></div>
+<div class="search">🔍<input id="searchBox" placeholder="Search Atta, Oil, Sabji..." onkeyup="doSearch()"></div>
 
-<div id="cartPage">
-<h3>🛒 My Order</h3><div id="cartItems" style="margin:10px 0;font-size:14px;line-height:1.6"></div>
-<p><b>Total: Rs.<span id="gt">0</span></b></p>
-<input id="cName" placeholder="Your Name">
-<input id="cPhone" placeholder="Phone Number">
-<textarea id="cAddr" placeholder="Full Address"></textarea>
-<button onclick="sendWA()" style="width:100%;background:#25D366;color:#fff;padding:13px;border:0;border-radius:12px;font-weight:800;margin-top:8px">Order on WhatsApp</button>
-<button onclick="document.getElementById('cartPage').style.display='none'" style="width:100%;margin-top:8px;padding:10px;border:0;background:#eee;border-radius:10px">Close</button>
+<div class="cats">
+<div class="catItem"><div class="catIcon">🌾</div><p>Atta</p></div>
+<div class="catItem"><div class="catIcon">🛢️</div><p>Oil</p></div>
+<div class="catItem"><div class="catIcon">🌶️</div><p>Masala</p></div>
+<div class="catItem"><div class="catIcon">🧹</div><p>Garbage</p></div>
+<div class="catItem"><div class="catIcon">🦟</div><p>Coil</p></div>
+<div class="catItem"><div class="catIcon">🥦</div><p>Veg</p></div>
 </div>
-<div id="basket"><span>🧺 Rs.<span id="bTotal">0</span> (<span id="bCount">0</span>)</span><button onclick="showCart()" style="background:#fff;color:#2e7d32;border:0;padding:9px 16px;border-radius:20px;font-weight:800">View Cart</button></div>
+
+<div class="filters">
+<button class="active" onclick="doFilter('all',this)">All</button>
+<button onclick="doFilter('veg',this)">Grocery & Kitchen</button>
+<button onclick="doFilter('snacks',this)">Snacks & Drinks</button>
+</div>
+
+<div class="products" id="list"></div>
+<div id="cartPage"><h3>🛒 My Order</h3><div id="cartItems"></div><p><b>Total: Rs.<span id="gt">0</span></b></p><input id="cName" placeholder="Your Name"><input id="cPhone" placeholder="Phone"><textarea id="cAddr" placeholder="Address"></textarea><button onclick="sendWA()" style="width:100%;background:#25D366;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">Order on WhatsApp</button><button onclick="this.parentElement.style.display='none'" style="width:100%;margin-top:6px;padding:10px;border:0;background:#eee;border-radius:10px">Close</button></div>
+<div id="basket"><span>🧺 Rs.<span id="bTotal">0</span> (<span id="bCount">0</span>)</span><button onclick="showCart()" style="background:#fff;color:#FF6A00;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart</button></div>
 
 <script>
 let items=[
-{name:"Tomato",price:30,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-{name:"Potato",price:25,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1518977676608-bd36c2ca4f0d?w=300"},
-{name:"Onion",price:45,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1508747703725-719777637510?w=300"},
-{name:"Brinjal",price:40,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=300"},
-{name:"Milk",price:32,cat:"veg",unit:"ltr",img:"https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300"},
-{name:"Eggs 12pc",price:84,cat:"veg",unit:"box",img:"https://images.unsplash.com/photo-1480589121900-59e45d8dcd51?w=300"},
-{name:"Lays Chips",price:20,cat:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300"},
-{name:"Coca Cola",price:40,cat:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1553456558-aff63285bdd1?w=300"},
+{name:"Fresh Tomato 1kg",price:30,mrp:40,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
+{name:"Potato 1kg",price:25,mrp:32,cat:"veg",unit:"kg",img:"https://images.unsplash.com/photo-1518977676608-bd36c2ca4f0d?w=300"},
+{name:"Fortune Mustard Oil 1L",price:165,mrp:195,cat:"veg",unit:"ltr",img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300"},
+{name:"Aashirvaad Atta 5kg",price:275,mrp:320,cat:"veg",unit:"bag",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
+{name:"Garbage Bag Roll",price:49,mrp:69,cat:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=300"},
+{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",unit:"pc",img:"https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=300"},
 ];
-let qtyList = items.map(()=>1);
-let cart={},total=0;
-let listDiv=document.getElementById('list');
+let qtyList=items.map(()=>1);let cart={},total=0;let listDiv=document.getElementById('list');
 function render(all){
  listDiv.innerHTML="";
  all.forEach((p)=>{
-  let idx = items.indexOf(p);
-  listDiv.innerHTML+=`
-  <div class="card">
-   <img src="${p.img}">
-   <h3>${p.name}</h3>
-   <div class="price">₹${p.price}<span>/${p.unit}</span></div>
-   <div class="qty">
-    <button onclick="changeQ(${idx},-1)">−</button>
-    <b id="q${idx}">${qtyList[idx]} ${p.unit}</b>
-    <button onclick="changeQ(${idx},1)">+</button>
-   </div>
-   <div class="total" id="t${idx}">Total: ₹${p.price*qtyList[idx]}</div>
-   <button class="addBtn" onclick="add(${idx})">🛒 Add</button>
-  </div>`;
+  let i=items.indexOf(p);let off=Math.round((1-p.price/p.mrp)*100);
+  listDiv.innerHTML+=`<div class="card"><div class="off">${off}% OFF</div><img src="${p.img}"><h3>${p.name}</h3><div class="priceRow"><b>₹${p.price}</b><s>₹${p.mrp}</s><span>${off}% OFF</span></div><div class="qty"><button onclick="changeQ(${i},-1)">−</button><b id="q${i}">${qtyList[i]} ${p.unit}</b><button onclick="changeQ(${i},1)">+</button></div><button class="addBtn" onclick="add(${i})">ADD</button></div>`;
  });
 }
-function changeQ(i,d){
- qtyList[i]=Math.max(1,qtyList[i]+d);
- document.getElementById('q'+i).innerText=qtyList[i]+" "+items[i].unit;
- document.getElementById('t'+i).innerText="Total: ₹"+(qtyList[i]*items[i].price);
-}
+function changeQ(i,d){qtyList[i]=Math.max(1,qtyList[i]+d);document.getElementById('q'+i).innerText=qtyList[i]+" "+items[i].unit;}
 render(items);
-function add(i){
- let p=items[i];let q=qtyList[i];
- if(!cart[p.name])cart[p.name]={q:0,price:p.price};
- cart[p.name].q+=q;update();
-}
-function update(){
- total=0;let c=0;for(let k in cart){total+=cart[k].q*cart[k].price;c+=cart[k].q;}
- document.getElementById('bTotal').innerText=total;
- document.getElementById('bCount').innerText=c;
- document.getElementById('gt').innerText=total;
- document.getElementById('basket').style.display=c>0?"flex":"none";
- let html="";for(let k in cart){html+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}<br>`;}
- document.getElementById('cartItems').innerHTML=html;
-}
-function showCart(){document.getElementById('cartPage').style.display='block';window.scrollTo(0,document.body.scrollHeight);}
+function add(i){let p=items[i];if(!cart[p.name])cart[p.name]={q:0,price:p.price};cart[p.name].q+=qtyList[i];update();}
+function update(){total=0;let c=0;for(let k in cart){total+=cart[k].q*cart[k].price;c+=cart[k].q;}document.getElementById('bTotal').innerText=total;document.getElementById('bCount').innerText=c;document.getElementById('gt').innerText=total;document.getElementById('basket').style.display=c>0?"flex":"none";let h="";for(let k in cart){h+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}<br>`;}document.getElementById('cartItems').innerHTML=h;}
+function showCart(){document.getElementById('cartPage').style.display='block';window.scrollTo(0,9999);}
 function doSearch(){let v=document.getElementById('searchBox').value.toLowerCase();render(items.filter(x=>x.name.toLowerCase().includes(v)));}
-function doFilter(cat,el){
- document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');
- if(cat=='all')render(items); else render(items.filter(x=>x.cat==cat));
-}
-function sendWA(){
- let name=document.getElementById('cName').value;let phone=document.getElementById('cPhone').value;let addr=document.getElementById('cAddr').value;
- if(!name||!phone){alert("Name Phone din");return;}
- let msg=`*New Order ROOP Fresh*%0AName: ${name}%0APhone: ${phone}%0AAddr: ${addr}%0A%0A`;
- for(let k in cart){msg+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}%0A`;}
- msg+=`%0ATotal: Rs.${total}`;window.open(`https://wa.me/917584036364?text=${msg}`);
-}
+function doFilter(cat,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(cat=='all')render(items);else render(items.filter(x=>x.cat==cat));}
+function sendWA(){let n=document.getElementById('cName').value;let ph=document.getElementById('cPhone').value;let a=document.getElementById('cAddr').value;if(!n||!ph){alert("Name Phone din");return;}let msg=`*New Order ROOP*%0AName:${n}%0APhone:${ph}%0AAddr:${a}%0A%0A`;for(let k in cart){msg+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}%0A`;}msg+=`%0ATotal: Rs.${total}`;window.open(`https://wa.me/917584036364?text=${msg}`);}
 </script>
 </body>
 </html>
