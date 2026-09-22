@@ -64,42 +64,26 @@ body{background:#fff8f0;padding-bottom:110px}
 let curIcon='all';
 let curMain='all';
 let items=[
-// ---- CHAL / RICE ----
-{name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"images/basmati.jpeg"},
-{name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"images/tuli.jpeg"},
-{name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"images/44.jpeg"},
-{name:"94 Number Chal 25kg",price:1050,mrp:1200,cat:"veg",sub:"rice",unit:"bosta",img:"images/94.jpeg"},
-{name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"images/kilikoli.jpeg"},
-{name:"RAHAMAN Miniket 25kg",price:1320,mrp:1500,cat:"veg",sub:"rice",unit:"bosta",img:"images/rahaman.jpeg"},
+let items=[
+// ---- CHAL ----
+{name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpg"},
+{name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"tuli.jpg"},
+{name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"44.jpg"},
+{name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"kilikoli.jpg"},
 
-// ---- OIL ----
-{name:"Mustard Oil 1L",price:165,mrp:195,cat:"veg",sub:"oil",unit:"ltr",img:"images/mustard.jpeg"},
-{name:"Sada Tel 1L",price:145,mrp:170,cat:"veg",sub:"oil",unit:"ltr",img:"images/sada.jpeg"},
+// ---- VEG / SOBJI - APNAR UPLOAD KORA FILE DIYE ----
+{name:"Badha Kopi / Cabbage 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"badhakopi.jpg"},
+{name:"Begun / Brinjal 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"begun.jpg"},
+{name:"Dheros / Bhindi 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"dheros.jpg"},
+{name:"Bingo Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"bingo.jpeg"},
+{name:"Cheese Ball",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"cheese.jpeg"},
+{name:"Coconut 1pc",price:35,mrp:45,cat:"veg",sub:"veg",unit:"pc",img:"coconut.jpeg"},
+{name:"Dew Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"dew.jpeg"},
+{name:"Fanta Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"fanta.jpeg"},
+{name:"Fulkopi Photo thakle",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"banner.jpeg"},
 
-// ---- MASALA ----
-{name:"Holud Masala 100g",price:32,mrp:40,cat:"veg",sub:"masala",unit:"pc",img:"images/haldi.jpeg"},
-{name:"Morich Masala 100g",price:38,mrp:48,cat:"veg",sub:"masala",unit:"pc",img:"images/morich.jpeg"},
-
-// ---- 🥦 VEG / SOBJI - NOTUN ADD KORLAM ----
-{name:"Aloo / Potato 1kg",price:25,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"images/aloo.jpeg"},
-{name:"Peyaj / Onion 1kg",price:35,mrp:45,cat:"veg",sub:"veg",unit:"kg",img:"images/peyaj.jpeg"},
-{name:"Tomato 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"images/tomato.jepg"},
-{name:"Fulkopi / Cauliflower 1pc",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"images/fulkopi.jpeg"},
-{name:"Badha Kopi / Cabbage 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"images/badhakopi.jpeg"},
-{name:"Begun / Brinjal 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"images/begun.jpeg"},
-{name:"Capsicum 250g",price:35,mrp:45,cat:"veg",sub:"veg",unit:"kg",img:"images/capsicum.jpeg"},
-{name:"Gajor / Carrot 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"images/gajor.jpeg"},
-{name:"Lau / Bottle Gourd 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"images/lau.jpeg"},
-{name:"Potol 500g",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"images/potol.jpeg"},
-{name:"Kochu / Taro 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"images/kochu.jpeg"},
-{name:"Dharos / Bhindi 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"images/dharos.jpeg"},
-{name:"Kancha Lonka 100g",price:15,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"images/lonka.jpeg"},
-{name:"Dhone Pata 1 Ati",price:10,mrp:15,cat:"veg",sub:"veg",unit:"pc",img:"images/dhonepata.jpeg"},
-
-// ---- BAKI ----
-{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"images/garbage.jpeg"},
-{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",sub:"coil",unit:"pc",img:"images/coil.jpeg"},
-{name:"Lays Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"images/lays.jpeg"},
+{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"banner.jpeg"},
+{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",sub:"coil",unit:"pc",img:"banner.jpeg"},
 ];
  
 let qtyList=items.map(()=>1);let cart={},total=0;let listDiv=document.getElementById('list');
