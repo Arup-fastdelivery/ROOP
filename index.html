@@ -13,15 +13,12 @@ body{background:#fff8f0;padding-bottom:110px}
 .search{margin:12px 16px;background:#fff;border:1.5px solid #ffd1a6;padding:12px 16px;border-radius:14px;display:flex;gap:8px}
 .search input{border:0;outline:0;width:100%;font-size:14px}
 .cats{display:flex;gap:12px;padding:8px 16px;overflow:auto}.cats::-webkit-scrollbar{display:none}
-.catItem{text-align:center;min-width:60px;cursor:pointer;opacity:0.7;border-bottom:3px solid transparent;padding-bottom:6px;transition:0.2s}
+.catItem{text-align:center;min-width:60px;cursor:pointer;opacity:0.7;border-bottom:3px solid transparent;padding-bottom:6px}
 .catItem.active{opacity:1;border-bottom:3px solid #FF6A00;color:#FF6A00}
 .catIcon{width:52px;height:52px;background:#fff3e8;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;border:1px solid #ffe0c0}
 .catItem p{font-size:11px;font-weight:700;margin-top:5px}
-.filters{display:flex;gap:8px;padding:10px 16px;overflow:auto}.filters::-webkit-scrollbar{display:none}
-.filters button{border:1px solid #ffd1a6;background:#fff;padding:8px 14px;border-radius:20px;font-weight:700;font-size:12px;white-space:nowrap}
-.filters button.active{background:#FF6A00;color:#fff;border-color:#FF6A00}
 .products{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 16px}
-.card{background:#fff;border:1px solid #f0f0f0;border-radius:18px;padding:10px;position:relative;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.card{background:#fff;border:1px solid #f0f0f0;border-radius:18px;padding:10px;position:relative}
 .off{position:absolute;top:8px;left:8px;background:#256fef;color:#fff;font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px}
 .card img{width:100%;height:105px;object-fit:contain;background:#fff;border-radius:12px;margin-top:10px}
 .card h3{font-size:13px;margin:8px 0 2px;height:32px;overflow:hidden}
@@ -29,222 +26,103 @@ body{background:#fff8f0;padding-bottom:110px}
 .priceRow b{font-size:14px}.priceRow s{font-size:11px;color:#999}.priceRow span{font-size:10px;color:#fff;background:#2e7d32;padding:2px 5px;border-radius:4px;font-weight:700}
 .qty{display:flex;align-items:center;justify-content:space-between;background:#fff7f0;border:1px solid #ffd1a6;padding:5px 8px;border-radius:20px;margin:8px 0}
 .qty button{width:26px;height:26px;border-radius:50%;border:0;background:#FF6A00;color:#fff;font-weight:800}
-.qty b{font-size:13px}
 .addBtn{width:100%;background:#fff;border:1.5px solid #FF6A00;color:#FF6A00;padding:9px;border-radius:12px;font-weight:900}
 #basket{position:fixed;bottom:12px;left:12px;right:12px;background:#FF6A00;color:#fff;padding:14px 18px;border-radius:16px;display:none;justify-content:space-between;z-index:30}
-#cartPage{display:none;background:#fff;margin:12px;padding:16px;border-radius:18px}
-#cartPage input,#cartPage textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:10px}
+#cartPage{display:none;background:#fff;margin:12px;padding:16px;border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+#cartPage input,#cartPage textarea,#cartPage select{width:100%;padding:12px;margin:6px 0;border:1.5px solid #ffd1a6;border-radius:10px;font-size:14px}
+.billBox{background:#fff8f0;padding:12px;border-radius:12px;margin:10px 0;border:1px dashed #FF6A00}
+.billRow{display:flex;justify-content:space-between;margin:4px 0;font-size:14px}
+.billRow.grand{font-weight:900;font-size:16px;border-top:1px solid #ffd1a6;padding-top:6px;margin-top:6px}
+#orderSuccess{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center;padding:20px}
+#orderSuccess.box{background:#fff;padding:24px;border-radius:20px;text-align:center;max-width:320px;width:100%}
 </style>
 </head>
 <body>
 <div class="header"><div class="logo">R</div><div><h1>ROOP <span>All in One</span></h1><p>⚡ Delivery in 1 Hours | Hemtabad</p></div></div>
 <div class="search">🔍<input id="searchBox" placeholder="Search Atta, Oil, Sabji..." onkeyup="doSearch()"></div>
-
 <div class="cats">
 <div class="catItem active" onclick="filterIcon('all',this)"><div class="catIcon">🌿</div><p>All</p></div>
 <div class="catItem" onclick="filterIcon('veg',this)"><div class="catIcon">🥦</div><p>Veg</p></div>
 <div class="catItem" onclick="filterIcon('rice',this)"><div class="catIcon">🌾</div><p>Chal</p></div>
 <div class="catItem" onclick="filterIcon('oil',this)"><div class="catIcon">🛢️</div><p>Oil</p></div>
 <div class="catItem" onclick="filterIcon('masala',this)"><div class="catIcon">🌶️</div><p>Masala</p></div>
- <div class="catItem" onclick="filterIcon('snacks',this)"><div class="catIcon">🍿</div><p>Snacks</p></div>
+<div class="catItem" onclick="filterIcon('snacks',this)"><div class="catIcon">🍿</div><p>Snacks</p></div>
 <div class="catItem" onclick="filterIcon('garbage',this)"><div class="catIcon">🧹</div><p>Garbage</p></div>
 <div class="catItem" onclick="filterIcon('coil',this)"><div class="catIcon">🦟</div><p>Coil</p></div>
 </div>
+<div class="products" id="list"></div>
 
-<div class="filters">
-<button class="active" onclick="doFilter('all',this)">All</button>
-<button onclick="doFilter('veg',this)">Grocery & Kitchen</button>
-<button onclick="doFilter('snacks',this)">Snacks & Drinks</button>
+<div id="cartPage">
+<h3>🛒 My Order - <span id="orderIdShow">ROOP-1001</span></h3>
+<div id="cartItems" style="margin:10px 0;font-size:13px"></div>
+<div class="billBox">
+<div class="billRow"><span>Product Total</span><span>₹<span id="pTotal">0</span></span></div>
+<div class="billRow"><span>Delivery Charge</span><span>₹<span id="dCharge">10</span></span></div>
+<div class="billRow grand"><span>Grand Total</span><span>₹<span id="gt">0</span></span></div>
+<p style="font-size:11px;color:#666;margin-top:6px">* ₹299+ order e FREE delivery!</p>
+</div>
+<input id="cName" placeholder="Your Name *">
+<input id="cPhone" placeholder="Phone Number *">
+<select id="cArea" onchange="calcDelivery()"><option value="Hemtabad Bazar">Hemtabad Bazar - ₹10</option><option value="Bangalbari">Bangalbari - ₹15</option><option value="Baharail">Baharail - ₹20</option><option value="Kochua">Kochua - ₹20</option><option value="Other">Other Area - ₹25</option></select>
+<textarea id="cAddr" placeholder="Full Address / Landmark"></textarea>
+<div style="margin:10px 0"><label><input type="radio" name="pay" value="COD" checked> 💵 Cash on Delivery (COD)</label><br><label><input type="radio" name="pay" value="Online"> 📱 Online Payment</label></div>
+<button onclick="sendWA()" style="width:100%;background:#25D366;color:#fff;padding:14px;border:0;border-radius:12px;font-weight:900;font-size:16px">✅ Confirm & Order on WhatsApp</button>
+<button onclick="this.parentElement.style.display='none'" style="width:100%;margin-top:8px;padding:10px;border:0;background:#eee;border-radius:10px">Continue Shopping</button>
 </div>
 
-<div class="products" id="list"></div>
-<div id="cartPage"><h3>🛒 My Order</h3><div id="cartItems"></div><p><b>Total: Rs.<span id="gt">0</span></b></p><input id="cName" placeholder="Your Name"><input id="cPhone" placeholder="Phone"><textarea id="cAddr" placeholder="Address"></textarea><button onclick="sendWA()" style="width:100%;background:#25D366;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">Order on WhatsApp</button><button onclick="this.parentElement.style.display='none'" style="width:100%;margin-top:6px;padding:10px;border:0;background:#eee;border-radius:10px">Close</button></div>
-<div id="basket"><span>🧺 Rs.<span id="bTotal">0</span> (<span id="bCount">0</span>)</span><button onclick="showCart()" style="background:#fff;color:#FF6A00;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart</button></div>
+<div id="orderSuccess"><div class="box"><div style="font-size:50px">✅</div><h2 style="color:#FF6A00">Order Received!</h2><p style="margin:10px 0">Order ID: <b id="successId">ROOP-1001</b></p><p style="font-size:13px;color:#666">Apnar order amra peyechi. 1 ghontar moddhe delivery hobe!</p><button onclick="closeSuccess()" style="margin-top:15px;width:100%;background:#FF6A00;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">OK</button></div></div>
+
+<div id="basket"><span>🧺 ₹<span id="bTotal">0</span> (<span id="bCount">0</span>) | Grand: ₹<span id="bGrand">0</span></span><button onclick="showCart()" style="background:#fff;color:#FF6A00;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart</button></div>
 
 <script>
-let curIcon='all';
-let curMain='all';
-// THIK KORA LIST - EKHANE AR 2 BAR let items= NEI
+let curIcon='all';let curMain='all';
 let items=[
-// ---- CHAL ----
-{name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpg"},
-{name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"tuli.jpg"},
-{name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"44.jpg"},
-{name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"kilikoli.jpg"},
-
-// ---- VEG / SOBJI (Ager gulo thaklo) ----
-{name:"Begun / Brinjal 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"begun.jpg"},
-{name:"Dheros / Bhindi 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"dheros.jpg"},
-{name:"Coconut 1pc",price:35,mrp:45,cat:"veg",sub:"veg",unit:"pc",img:"coconut.jpeg"},
- // ---- VEG / SOBJI - 49 TA FINAL LIST ----
 {name:"Potato / Aloo 1kg",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"potato.jpg"},
 {name:"Onion / Peyaj 1kg",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"onion.jpg"},
 {name:"Tomato 1kg",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"tomato.jpg"},
-{name:"Cauliflower / Fulkopi 1pc",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"fulkopi.jpg"},
-{name:"Cabbage / Badhakopi 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"badhakopi.jpg"},
-{name:"Carrot / Gajor 500g",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"carrot.jpg"},
-{name:"Radish / Mulo 1kg",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"radish.jpg"},
-{name:"Pumpkin / Kumro 1kg",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"pumpkin.jpg"},
-{name:"Bottle Gourd / Lau 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"lau.jpg"},
-{name:"Bitter Gourd / Ucche 500g",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"ucche.jpg"},
-{name:"Ridge Gourd / Jhinge 500g",price:24,mrp:34,cat:"veg",sub:"veg",unit:"kg",img:"jhinge.jpg"},
-{name:"Snake Gourd / Chichinga 500g",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"chichinga.jpg"},
-{name:"Pointed Gourd / Potol 500g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"potol.jpg"},
-{name:"Sponge Gourd / Dharosh 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"dheros.jpg"},
-{name:"Lady's Finger / Bhindi 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"bhindi.jpg"},
-{name:"Green Chilli / Kancha Lonka 100g",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"green_chilli.jpg"},
-{name:"Green Peas / Motorshuti 500g",price:35,mrp:48,cat:"veg",sub:"veg",unit:"kg",img:"peas.jpg"},
-{name:"French Beans / Bean 500g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"beans.jpg"},
-{name:"Cluster Beans / Jhar Sim 500g",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"cluster_beans.jpg"},
-{name:"Broad Beans / Sim 500g",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"sim.jpg"},
-{name:"Cucumber / Shosha 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"cucumber.jpg"},
-{name:"Drumstick / Sojne Data 250g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"sojne.jpg"},
-{name:"Raw Banana / Kancha Kola 4pc",price:20,mrp:30,cat:"veg",sub:"veg",unit:"pc",img:"kancha_kola.jpg"},
-{name:"Raw Papaya / Kancha Pepe 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"pepe.jpg"},
-{name:"Jackfruit / Echor 1kg",price:40,mrp:55,cat:"veg",sub:"veg",unit:"kg",img:"echor.jpg"},
-{name:"Taro Root / Kochu 500g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"kochu.jpg"},
-{name:"Sweet Potato / Misti Aloo 500g",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"misti_aloo.jpg"},
-{name:"Beetroot 500g",price:24,mrp:34,cat:"veg",sub:"veg",unit:"kg",img:"beetroot.jpg"},
-{name:"Spinach / Palong Shak 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"palong.jpg"},
-{name:"Coriander Leaves / Dhone Pata 100g",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"dhone_pata.jpg"},
-{name:"Mint Leaves / Pudina 100g",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"pudina.jpg"},
-{name:"Green Onion / Peyajkoli 250g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"pc",img:"peyajkoli.jpg"},
-{name:"Turnip / Shalgam 500g",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"shalgam.jpg"},
-{name:"Mushroom / Chhatu 200g",price:40,mrp:55,cat:"veg",sub:"veg",unit:"pc",img:"mushroom.jpg"},
-{name:"Ginger / Ada 250g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"ada.jpg"},
-{name:"Garlic / Rosun 250g",price:35,mrp:48,cat:"veg",sub:"veg",unit:"kg",img:"rosun.jpg"},
-{name:"Sweet Corn / Bhutta 2pc",price:30,mrp:42,cat:"veg",sub:"veg",unit:"pc",img:"corn.jpg"},
-{name:"Capsicum / Shimla Mirch 250g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"capsicum.jpg"},
-{name:"Colocasia Leaves / Kochu Pata 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"kochu_pata.jpg"},
-{name:"Malabar Spinach / Pui Shak 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"pui_shak.jpg"},
-{name:"Amaranth Leaves / Note Shak 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"note_shak.jpg"},
-{name:"Banana Flower / Mocha 1pc",price:20,mrp:30,cat:"veg",sub:"veg",unit:"pc",img:"mocha.jpg"},
-{name:"Banana Stem / Thor 1pc",price:18,mrp:28,cat:"veg",sub:"veg",unit:"pc",img:"thor.jpg"},
-{name:"Ash Gourd / Chal Kumro 1kg",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"chal_kumro.jpg"},
-{name:"Ivy Gourd / Telakucha 250g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"telakucha.jpg"},
-{name:"Green Beans / Borboti 250g",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"borboti.jpg"},
-{name:"Drumstick Leaves / Sojne Pata 1 bundle",price:12,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"sojne_pata.jpg"},
-{name:"Mustard Greens / Sorisa Shak 1 bundle",price:12,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"sorisa_shak.jpg"},
-{name:"Water Spinach / Kolmi Shak 1 bundle",price:12,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"kolmi.jpg"},
-
- // ---- CHAL - 15 TA FINAL + BONUS ----
+{name:"Begun / Brinjal 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"begun.jpg"},
 {name:"Miniket Rice 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"miniket.jpg"},
 {name:"Swarna Rice 25kg",price:1050,mrp:1250,cat:"veg",sub:"rice",unit:"bosta",img:"swarna.jpg"},
-{name:"Sona Masuri Rice 10kg",price:650,mrp:750,cat:"veg",sub:"rice",unit:"bosta",img:"sona_masuri.jpg"},
-{name:"Gobindobhog Rice 5kg",price:550,mrp:650,cat:"veg",sub:"rice",unit:"bosta",img:"gobindobhog.jpg"},
-{name:"Tulaipanji Rice 10kg",price:850,mrp:980,cat:"veg",sub:"rice",unit:"bosta",img:"tulaipanji.jpg"},
-{name:"Jeera Kathi Rice 25kg",price:1450,mrp:1650,cat:"veg",sub:"rice",unit:"bosta",img:"jeera_kathi.jpg"},
-{name:"Atap Rice 25kg",price:1100,mrp:1300,cat:"veg",sub:"rice",unit:"bosta",img:"atap.jpg"},
-{name:"Seddho Rice 25kg",price:1000,mrp:1200,cat:"veg",sub:"rice",unit:"bosta",img:"seddho.jpg"},
-{name:"Basmati Rice 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpg"},
-{name:"Kalonunia Rice 10kg",price:900,mrp:1050,cat:"veg",sub:"rice",unit:"bosta",img:"kalonunia.jpg"},
-{name:"Kataribhog Rice 10kg",price:800,mrp:950,cat:"veg",sub:"rice",unit:"bosta",img:"kataribhog.jpg"},
-{name:"Radhunipagal Rice 10kg",price:780,mrp:920,cat:"veg",sub:"rice",unit:"bosta",img:"radhunipagal.jpg"},
-{name:"Badshabhog Rice 5kg",price:480,mrp:580,cat:"veg",sub:"rice",unit:"bosta",img:"badshabhog.jpg"},
-{name:"Radhatilak Rice 10kg",price:820,mrp:960,cat:"veg",sub:"rice",unit:"bosta",img:"radhatilak.jpg"},
-{name:"Sitabhog Rice 10kg",price:760,mrp:900,cat:"veg",sub:"rice",unit:"bosta",img:"sitabhog.jpg"},
-// BONUS - Ager famous gulo rekhe dilam
 {name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"tuli.jpg"},
 {name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"44.jpg"},
-
-// ---- SNACKS & DRINKS (Ager gulo thaklo) ----
-{name:"Bingo Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"bingo.jpeg"},
-{name:"Cheese Ball",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"cheese.jpeg"},
-{name:"Dew Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"dew.jpeg"},
-{name:"Fanta Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"fanta.jpeg"},
-{name:"Kurkure Masala Munch",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"kurkure.jpg"},
-{name:"Lays Classic Salted",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"lays.jpeg"},
-{name:"Bingo Mad Angles",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"bingo.jpg"},
-{name:"Uncle Chipps",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"uncle_chipps.jpg"},
-{name:"Tedhe Medhe",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"tedhe_medhe.jpg"},
-{name:"Haldiram Bhujia",price:45,mrp:55,cat:"snacks",sub:"snacks",unit:"pc",img:"haldiram_bhujia.jpg"},
-{name:"Haldiram Aloo Bhujia 200g",price:55,mrp:65,cat:"snacks",sub:"snacks",unit:"pc",img:"aloo_bhujia.jpg"},
-{name:"Haldiram Sev 200g",price:50,mrp:60,cat:"snacks",sub:"snacks",unit:"pc",img:"haldiram_sev.jpg"},
-{name:"Balaji Wafers",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"balaji.jpg"},
-{name:"Too Yumm Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"too_yumm.jpg"},
-{name:"Pringles Original",price:110,mrp:130,cat:"snacks",sub:"snacks",unit:"pc",img:"pringles.jpg"},
-{name:"Nachos Cheese",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"nachos.jpg"},
-{name:"Cheese Balls",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"cheese_ball.jpg"},
-{name:"Potato Wafers",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"potato_wafers.jpg"},
-{name:"Banana Chips",price:35,mrp:45,cat:"snacks",sub:"snacks",unit:"pc",img:"banana_chips.jpg"},
-{name:"Masala Peanuts",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"masala_peanut.jpg"},
-{name:"Roasted Peanuts",price:25,mrp:35,cat:"snacks",sub:"snacks",unit:"pc",img:"roasted_peanut.jpg"},
-{name:"Dalmut",price:35,mrp:45,cat:"snacks",sub:"snacks",unit:"pc",img:"dalmut.jpg"},
-{name:"Chanachur",price:35,mrp:45,cat:"snacks",sub:"snacks",unit:"pc",img:"chanachur.jpg"},
-{name:"Mixture",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"mixture.jpg"},
-{name:"Papad Lijjat 200g",price:45,mrp:55,cat:"snacks",sub:"snacks",unit:"pc",img:"papad.jpg"},
-{name:"Popcorn Act II",price:25,mrp:35,cat:"snacks",sub:"snacks",unit:"pc",img:"popcorn.jpg"},
-{name:"Fryums",price:10,mrp:15,cat:"snacks",sub:"snacks",unit:"pc",img:"fryums.jpg"},
-
-// ---- MASALA - 20 TA NOTUN (Ager gulo r sathe add holo) ----
-{name:"Dry Red Chilli 100g",price:35,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"dry_chilli.jpg"},
-{name:"Turmeric Powder 100g",price:32,mrp:45,cat:"veg",sub:"masala",unit:"pc",img:"haldi_powder.jpg"},
-{name:"Cumin / Jeera 100g",price:42,mrp:55,cat:"veg",sub:"masala",unit:"pc",img:"jeera.jpg"},
-{name:"Coriander / Dhone 100g",price:30,mrp:42,cat:"veg",sub:"masala",unit:"pc",img:"dhone.jpg"},
-{name:"Nigella Seeds / Kalonji 100g",price:28,mrp:38,cat:"veg",sub:"masala",unit:"pc",img:"kalonji.jpg"},
-{name:"Mustard Seeds / Sorse 100g",price:26,mrp:36,cat:"veg",sub:"masala",unit:"pc",img:"sorse.jpg"},
-{name:"Fenugreek Seeds / Methi 100g",price:25,mrp:35,cat:"veg",sub:"masala",unit:"pc",img:"methi.jpg"},
-{name:"Fennel Seeds / Mouri 100g",price:32,mrp:45,cat:"veg",sub:"masala",unit:"pc",img:"mouri.jpg"},
-{name:"Radhuni 50g",price:22,mrp:32,cat:"veg",sub:"masala",unit:"pc",img:"radhuni.jpg"},
-{name:"Panch Phoron 100g",price:30,mrp:42,cat:"veg",sub:"masala",unit:"pc",img:"panchphoron.jpg"},
-{name:"Black Pepper / Gol Morich 50g",price:45,mrp:60,cat:"veg",sub:"masala",unit:"pc",img:"golmorich.jpg"},
-{name:"Cinnamon / Daruchini 50g",price:38,mrp:52,cat:"veg",sub:"masala",unit:"pc",img:"daruchini.jpg"},
-{name:"Cardamom / Elach 20g",price:48,mrp:65,cat:"veg",sub:"masala",unit:"pc",img:"elach.jpg"},
-{name:"Cloves / Lobongo 20g",price:35,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"lobongo.jpg"},
-{name:"Bay Leaf / Tej Pata 20g",price:15,mrp:25,cat:"veg",sub:"masala",unit:"pc",img:"tejpat.jpg"},
-{name:"Asafoetida / Hing 10g",price:25,mrp:35,cat:"veg",sub:"masala",unit:"pc",img:"hing.jpg"},
-{name:"Red Chilli Powder 100g",price:38,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"lonka_guro.jpg"},
-{name:"Cumin Powder / Jeera Guro 100g",price:40,mrp:55,cat:"veg",sub:"masala",unit:"pc",img:"jeera_guro.jpg"},
-{name:"Coriander Powder / Dhone Guro 100g",price:34,mrp:46,cat:"veg",sub:"masala",unit:"pc",img:"dhone_guro.jpg"},
-{name:"Garam Masala 50g",price:42,mrp:58,cat:"veg",sub:"masala",unit:"pc",img:"garam_masala.jpg"},
-
- // ---- OTHERS - Garbage & Coil abar add korlam ----
-{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"garbage.jpg"},
-{name:"Mortein Coil",price:42,mrp:55,cat:"veg",sub:"coil",unit:"pc",img:"mortein.jpg"},
-
-
-// ---- COLD DRINKS ----
-{name:"Coca-Cola 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"coke.jpg"},
-{name:"Pepsi 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"pepsi.jpg"},
-{name:"Thums Up 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"thumsup.jpg"},
-{name:"Sprite 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"sprite.jpg"},
-{name:"Fanta 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"fanta.jpg"},
-{name:"7UP 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"7up.jpg"},
-{name:"Mountain Dew 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"dew.jpg"},
-
-// ---- JUICE / FRUIT DRINKS ----
-{name:"Frooti Mango 160ml",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"frooti.jpg"},
-{name:"Maaza Mango 600ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"maaza.jpg"},
-{name:"Slice Mango 600ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"slice.jpg"},
-{name:"Appy Fizz 600ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"appy.jpg"},
-{name:"Real Fruit Juice 1L",price:110,mrp:130,cat:"snacks",sub:"snacks",unit:"pc",img:"real_juice.jpg"},
-
-// ---- WATER & OTHERS ----
-{name:"Packaged Water 1L",price:20,mrp:20,cat:"snacks",sub:"snacks",unit:"pc",img:"water.jpg"},
-{name:"Soda Water 750ml",price:25,mrp:30,cat:"snacks",sub:"snacks",unit:"pc",img:"soda.jpg"},
-{name:"Amul Kool 200ml",price:25,mrp:30,cat:"snacks",sub:"snacks",unit:"pc",img:"amul_kool.jpg"},
-{name:"Lassi Sweet 200ml",price:30,mrp:35,cat:"snacks",sub:"snacks",unit:"pc",img:"lassi.jpg"},
- 
- // ---- OIL - 15 TA NOTUN ----
 {name:"Mustard Oil / Sorisar Tel 1L",price:145,mrp:165,cat:"veg",sub:"oil",unit:"L",img:"mustard_oil.jpg"},
 {name:"Soybean Oil 1L",price:135,mrp:155,cat:"veg",sub:"oil",unit:"L",img:"soybean_oil.jpg"},
-{name:"Sunflower Oil 1L",price:140,mrp:160,cat:"veg",sub:"oil",unit:"L",img:"sunflower_oil.jpg"},
-{name:"Rice Bran Oil 1L",price:150,mrp:175,cat:"veg",sub:"oil",unit:"L",img:"ricebran_oil.jpg"},
-{name:"Groundnut Oil / Badam Tel 1L",price:180,mrp:210,cat:"veg",sub:"oil",unit:"L",img:"groundnut_oil.jpg"},
-{name:"Sesame Oil / Til Tel 200ml",price:95,mrp:120,cat:"veg",sub:"oil",unit:"pc",img:"til_oil.jpg"},
-{name:"Palm Oil / Palmolein Oil 1L",price:110,mrp:130,cat:"veg",sub:"oil",unit:"L",img:"palm_oil.jpg"},
-{name:"Coconut Oil / Narikel Tel 500ml",price:140,mrp:165,cat:"veg",sub:"oil",unit:"pc",img:"coconut_oil.jpg"},
-{name:"Olive Oil 250ml",price:299,mrp:350,cat:"veg",sub:"oil",unit:"pc",img:"olive_oil.jpg"},
-{name:"Niger Seed Oil / Ramtil Tel 1L",price:165,mrp:190,cat:"veg",sub:"oil",unit:"L",img:"ramtil_oil.jpg"},
-{name:"Safflower Oil / Kusum Tel 1L",price:160,mrp:185,cat:"veg",sub:"oil",unit:"L",img:"safflower_oil.jpg"},
-{name:"Corn Oil 1L",price:155,mrp:180,cat:"veg",sub:"oil",unit:"L",img:"corn_oil.jpg"},
-{name:"Cottonseed Oil / Binola Tel 1L",price:125,mrp:145,cat:"veg",sub:"oil",unit:"L",img:"cottonseed_oil.jpg"},
-{name:"Canola Oil 1L",price:195,mrp:230,cat:"veg",sub:"oil",unit:"L",img:"canola_oil.jpg"},
-{name:"Vanaspati / Dalda 500g",price:85,mrp:105,cat:"veg",sub:"oil",unit:"pc",img:"vanaspati.jpg"},
+{name:"Dry Red Chilli 100g",price:35,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"dry_chilli.jpg"},
+{name:"Turmeric Powder 100g",price:32,mrp:45,cat:"veg",sub:"masala",unit:"pc",img:"haldi_powder.jpg"},
+{name:"Garam Masala 50g",price:42,mrp:58,cat:"veg",sub:"masala",unit:"pc",img:"garam_masala.jpg"},
+{name:"Kurkure Masala Munch",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"kurkure.jpg"},
+{name:"Lays Classic Salted",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"lays.jpg"},
+{name:"Bingo Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"bingo.jpeg"},
+{name:"Cheese Ball",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"cheese.jpeg"},
+{name:"Coca-Cola 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"coke.jpg"},
+{name:"Pepsi 750ml",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"pepsi.jpg"},
+{name:"Dew Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"dew.jpeg"},
+{name:"Fanta Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"fanta.jpeg"},
+{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"garbage.jpg"},
+{name:"Mortein Coil",price:42,mrp:55,cat:"veg",sub:"coil",unit:"pc",img:"mortein.jpg"},
 ];
-
-let qtyList=items.map(()=>1);let cart={},total=0;let listDiv=document.getElementById('list');
-
+let qtyList=items.map(()=>1);let cart={},total=0,deliveryCharge=10,grandTotal=0;
+let orderNo=parseInt(localStorage.getItem('roop_order_no')||'1001');
+function getOrderId(){return 'ROOP-'+orderNo;}
+document.getElementById('orderIdShow').innerText=getOrderId();
+function calcDelivery(){
+ let area=document.getElementById('cArea').value;
+ if(area.includes('Bazar')) deliveryCharge=10;
+ else if(area.includes('Bangalbari')) deliveryCharge=15;
+ else if(area.includes('Other')) deliveryCharge=25;
+ else deliveryCharge=20;
+ if(total>=299) deliveryCharge=0;
+ updateBill();
+}
+function updateBill(){
+ document.getElementById('pTotal').innerText=total;
+ document.getElementById('dCharge').innerText=deliveryCharge;
+ grandTotal=total+deliveryCharge;
+ document.getElementById('gt').innerText=grandTotal;
+ document.getElementById('bTotal').innerText=total;
+ document.getElementById('bGrand').innerText=grandTotal;
+}
+let listDiv=document.getElementById('list');
 function render(all){
  listDiv.innerHTML="";
  all.forEach((p)=>{
@@ -256,21 +134,33 @@ function applyFilters(){
  let search=document.getElementById('searchBox').value.toLowerCase();
  let filtered=items.filter(x=>{
    let matchIcon = curIcon=='all' || x.sub==curIcon;
-   let matchMain = curMain=='all' || x.cat==curMain;
    let matchSearch = x.name.toLowerCase().includes(search);
-   return matchIcon && matchMain && matchSearch;
+   return matchIcon && matchSearch;
  });
  render(filtered);
 }
 function changeQ(i,d){qtyList[i]=Math.max(1,qtyList[i]+d);document.getElementById('q'+i).innerText=qtyList[i]+" "+items[i].unit;}
 function filterIcon(sub,el){document.querySelectorAll('.catItem').forEach(b=>b.classList.remove('active'));el.classList.add('active');curIcon=sub;applyFilters();}
-function doFilter(cat,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');curMain=cat;applyFilters();}
 function doSearch(){applyFilters();}
 render(items);
 function add(i){let p=items[i];if(!cart[p.name])cart[p.name]={q:0,price:p.price};cart[p.name].q+=qtyList[i];update();}
-function update(){total=0;let c=0;for(let k in cart){total+=cart[k].q*cart[k].price;c+=cart[k].q;}document.getElementById('bTotal').innerText=total;document.getElementById('bCount').innerText=c;document.getElementById('gt').innerText=total;document.getElementById('basket').style.display=c>0?"flex":"none";let h="";for(let k in cart){h+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}<br>`;}document.getElementById('cartItems').innerHTML=h;}
-function showCart(){document.getElementById('cartPage').style.display='block';window.scrollTo(0,9999);}
-function sendWA(){let n=document.getElementById('cName').value;let ph=document.getElementById('cPhone').value;let a=document.getElementById('cAddr').value;if(!n||!ph){alert("Name Phone din");return;}let msg=`*New Order ROOP*%0AName:${n}%0APhone:${ph}%0AAddr:${a}%0A%0A`;for(let k in cart){msg+=`${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}%0A`;}msg+=`%0ATotal: Rs.${total}`;window.open(`https://wa.me/917584036364?text=${msg}`);}
+function update(){total=0;let c=0;for(let k in cart){total+=cart[k].q*cart[k].price;c+=cart[k].q;}calcDelivery();document.getElementById('bCount').innerText=c;document.getElementById('basket').style.display=c>0?"flex":"none";let h="";for(let k in cart){h+=`${k} x ${cart[k].q} = ₹${cart[k].q*cart[k].price}<br>`;}document.getElementById('cartItems').innerHTML=h;}
+function showCart(){document.getElementById('orderIdShow').innerText=getOrderId();document.getElementById('cartPage').style.display='block';window.scrollTo(0,9999);}
+function closeSuccess(){document.getElementById('orderSuccess').style.display='none';}
+function sendWA(){
+ let n=document.getElementById('cName').value;let ph=document.getElementById('cPhone').value;let a=document.getElementById('cAddr').value;let area=document.getElementById('cArea').value;
+ let pay=document.querySelector('input[name="pay"]:checked').value;
+ if(!n||!ph){alert("Name & Phone din");return;}
+ let orderId=getOrderId();
+ let msg=`*🛒 NEW ORDER - ${orderId}*%0A%0A*Customer:* ${n}%0A*Phone:* ${ph}%0A*Area:* ${area}%0A*Address:* ${a}%0A*Payment:* ${pay}%0A%0A*--- Items ---*%0A`;
+ for(let k in cart){msg+=`• ${k} x ${cart[k].q} = ₹${cart[k].q*cart[k].price}%0A`;}
+ msg+=`%0A*Product Total:* ₹${total}%0A*Delivery Charge:* ₹${deliveryCharge}%0A*GRAND TOTAL:* ₹${grandTotal}%0A%0AThank you for shopping at ROOP All in One!`;
+ window.open(`https://wa.me/917584036364?text=${msg}`);
+ document.getElementById('successId').innerText=orderId;
+ document.getElementById('orderSuccess').style.display='flex';
+ orderNo++; localStorage.setItem('roop_order_no',orderNo);
+ cart={};total=0;update();document.getElementById('cartPage').style.display='none';
+}
 </script>
 </body>
 </html>
