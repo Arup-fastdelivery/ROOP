@@ -42,7 +42,7 @@ body{background:#fff8f0;padding-bottom:110px}
 
 <div class="cats">
 <div class="catItem active" onclick="filterIcon('all',this)"><div class="catIcon">🌿</div><p>All</p></div>
- <div class="catItem" onclick="filterIcon('veg',this)"><div class="catIcon">🥦</div><p>Veg</p></div>
+<div class="catItem" onclick="filterIcon('veg',this)"><div class="catIcon">🥦</div><p>Veg</p></div>
 <div class="catItem" onclick="filterIcon('rice',this)"><div class="catIcon">🌾</div><p>Chal</p></div>
 <div class="catItem" onclick="filterIcon('oil',this)"><div class="catIcon">🛢️</div><p>Oil</p></div>
 <div class="catItem" onclick="filterIcon('masala',this)"><div class="catIcon">🌶️</div><p>Masala</p></div>
@@ -63,15 +63,12 @@ body{background:#fff8f0;padding-bottom:110px}
 <script>
 let curIcon='all';
 let curMain='all';
+// THIK KORA LIST - EKHANE AR 2 BAR let items= NEI
 let items=[
-let items=[
-// ---- CHAL ----
 {name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpg"},
 {name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"tuli.jpg"},
 {name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"44.jpg"},
 {name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"kilikoli.jpg"},
-
-// ---- VEG / SOBJI - APNAR UPLOAD KORA FILE DIYE ----
 {name:"Badha Kopi / Cabbage 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"badhakopi.jpg"},
 {name:"Begun / Brinjal 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"begun.jpg"},
 {name:"Dheros / Bhindi 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"dheros.jpg"},
@@ -80,19 +77,18 @@ let items=[
 {name:"Coconut 1pc",price:35,mrp:45,cat:"veg",sub:"veg",unit:"pc",img:"coconut.jpeg"},
 {name:"Dew Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"dew.jpeg"},
 {name:"Fanta Cold Drink",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"fanta.jpeg"},
-{name:"Fulkopi Photo thakle",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"banner.jpeg"},
-
-{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"banner.jpeg"},
-{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",sub:"coil",unit:"pc",img:"banner.jpeg"},
+{name:"Fulkopi 1pc",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"fulkopi.jpg"},
+{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"badhakopi.jpg"},
+{name:"Mortein Coil",price:42,mrp:55,cat:"snacks",sub:"coil",unit:"pc",img:"cheese.jpeg"},
 ];
- 
+
 let qtyList=items.map(()=>1);let cart={},total=0;let listDiv=document.getElementById('list');
 
 function render(all){
  listDiv.innerHTML="";
  all.forEach((p)=>{
   let i=items.indexOf(p);let off=Math.round((1-p.price/p.mrp)*100);
-  listDiv.innerHTML+=`<div class="card"><div class="off">${off}% OFF</div><img src="${p.img}"><h3>${p.name}</h3><div class="priceRow"><b>₹${p.price}</b><s>₹${p.mrp}</s><span>${off}% OFF</span></div><div class="qty"><button onclick="changeQ(${i},-1)">−</button><b id="q${i}">${qtyList[i]} ${p.unit}</b><button onclick="changeQ(${i},1)">+</button></div><button class="addBtn" onclick="add(${i})">ADD</button></div>`;
+  listDiv.innerHTML+=`<div class="card"><div class="off">${off}% OFF</div><img src="${p.img}" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"><h3>${p.name}</h3><div class="priceRow"><b>₹${p.price}</b><s>₹${p.mrp}</s><span>${off}% OFF</span></div><div class="qty"><button onclick="changeQ(${i},-1)">−</button><b id="q${i}">${qtyList[i]} ${p.unit}</b><button onclick="changeQ(${i},1)">+</button></div><button class="addBtn" onclick="add(${i})">ADD</button></div>`;
  });
 }
 function applyFilters(){
