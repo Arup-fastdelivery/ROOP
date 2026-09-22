@@ -1,0 +1,15 @@
+{
+  "name": "FreshCart",
+  "short_name": "FreshCart",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#16a34a",
+  "theme_color": "#16a34a",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2909/2909761.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
