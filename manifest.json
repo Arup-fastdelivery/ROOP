@@ -1,8 +1,8 @@
 {
   "name": "ROOP - All in One Delivery",
   "short_name": "ROOP",
-  "start_url": "/",
-  "scope": "./",
+  "start_url": "/ROOP/",
+  "scope": "/ROOP/",
   "display": "standalone",
   "background_color": "#fff8f0",
   "theme_color": "#FF6A00",
