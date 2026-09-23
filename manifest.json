@@ -1,13 +1,13 @@
 {
-  "name": "FreshCart",
-  "short_name": "FreshCart",
-  "start_url": ".",
+  "name": "ROOP - All in One Delivery",
+  "short_name": "ROOP",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#16a34a",
-  "theme_color": "#16a34a",
+  "background_color": "#fff8f0",
+  "theme_color": "#FF6A00",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/2909/2909761.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/2099/2099781.png",
       "sizes": "512x512",
       "type": "image/png"
     }
