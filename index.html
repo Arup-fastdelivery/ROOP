@@ -333,8 +333,13 @@ function sendWA(){
  let area=document.getElementById('cArea').value;
  let pay=document.querySelector('input[name="pay"]:checked').value;
 
- if(!n ||!ph ||!a){
+  if(!n ||!ph ||!a){
   alert("Name, Phone and Address din");
+  return;
+ }
+
+ if(!/^[6-9]\d{9}$/.test(ph)){
+  alert("Valid 10-digit phone number din");
   return;
  }
 
