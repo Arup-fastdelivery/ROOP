@@ -97,17 +97,75 @@ input,select,textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd
 <script>
 let curIcon='all';
 let items=[
+<script>
+let curIcon='all';
+let items=[
+// --- VEG 20+ ---
+{name:"Begun 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"begun.jpg"},
+{name:"Potato Aloo 1kg",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"potato.jpg"},
+{name:"Onion Peyaj 1kg",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"onion.jpeg"},
+{name:"Tomato 1kg",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"tomato.jpg"},
+{name:"Cauliflower Fulkopi 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"fulkopi.jpg"},
+{name:"Cabbage Badhakopi 1pc",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"badhakopi.jpg"},
+{name:"Green Chilli Lonka 100g",price:15,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"lonka.jpg"},
+{name:"Carrot Gajor 500g",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"gajor.jpg"},
+{name:"Cucumber Shosha 500g",price:20,mrp:28,cat:"veg",sub:"veg",unit:"pc",img:"shosha.jpg"},
+{name:"Lemon Lebu 4pc",price:20,mrp:28,cat:"veg",sub:"veg",unit:"pc",img:"lebu.jpg"},
+{name:"Dhone Pata 100g",price:10,mrp:15,cat:"veg",sub:"veg",unit:"pc",img:"dhone.jpg"},
+{name:"Lau 1pc",price:35,mrp:50,cat:"veg",sub:"veg",unit:"pc",img:"lau.jpg"},
+{name:"Potol 500g",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"potol.jpg"},
+{name:"Dharosh 500g",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"dharosh.jpg"},
+
+// --- RICE / CHAL ---
 {name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpeg"},
 {name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"tuli.jpeg"},
 {name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"bosta",img:"44.jpeg"},
-{name:"Begun 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"begun.jpg"},
-{name:"Potato 1kg",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"potato.jpg"},
+{name:"Miniket Chal 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"miniket.jpeg"},
+{name:"Swarna Chal 25kg",price:1050,mrp:1200,cat:"veg",sub:"rice",unit:"bosta",img:"swarna.jpeg"},
+
+// --- OIL ---
 {name:"Mustard Oil 1L",price:145,mrp:165,cat:"veg",sub:"oil",unit:"L",img:"mustard_oil.jpeg"},
+{name:"Soybean Oil 1L",price:135,mrp:155,cat:"veg",sub:"oil",unit:"L",img:"soybean_oil.jpeg"},
+{name:"Sunflower Oil 1L",price:140,mrp:160,cat:"veg",sub:"oil",unit:"L",img:"sunflower.jpeg"},
+
+// --- MASALA ---
+{name:"Turmeric Powder 100g",price:32,mrp:45,cat:"veg",sub:"masala",unit:"pc",img:"haldi_powder.jpeg"},
+{name:"Red Chilli Powder 100g",price:38,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"lonka_guro.jpeg"},
+{name:"Jeera 100g",price:45,mrp:60,cat:"veg",sub:"masala",unit:"pc",img:"jeera.jpeg"},
+{name:"Dhone Guro 100g",price:35,mrp:48,cat:"veg",sub:"masala",unit:"pc",img:"dhone_guro.jpeg"},
+{name:"Garam Masala 50g",price:30,mrp:40,cat:"veg",sub:"masala",unit:"pc",img:"garam_masala.jpeg"},
+{name:"Salt Lobon 1kg",price:22,mrp:28,cat:"veg",sub:"masala",unit:"kg",img:"salt.jpeg"},
+{name:"Sugar Chini 1kg",price:45,mrp:52,cat:"veg",sub:"masala",unit:"kg",img:"sugar.jpeg"},
+
+// --- SNACKS ---
 {name:"Bingo Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"bingo.jpeg"},
+{name:"Lays Classic 52g",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"lays.jpeg"},
+{name:"Kurkure Masala",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"kurkure.jpeg"},
+{name:"Britannia Biscuit",price:30,mrp:35,cat:"snacks",sub:"snacks",unit:"pc",img:"biscuit.jpeg"},
+{name:"Maggi Noodles 70g",price:14,mrp:15,cat:"snacks",sub:"snacks",unit:"pc",img:"maggi.jpeg"},
+
+// --- COLD DRINKS ---
 {name:"Coca-Cola 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"coke.jpeg"},
-{name:"Water 1L",price:20,mrp:20,cat:"snacks",sub:"water",unit:"pc",img:"water.jpeg"},
-{name:"Garbage Bag",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"garbage.jpeg"},
-{name:"Mortein Coil",price:42,mrp:55,cat:"veg",sub:"coil",unit:"pc",img:"mortein.jpeg"}
+{name:"Thums Up 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"thumsup.jpeg"},
+{name:"Sprite 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"sprite.jpeg"},
+{name:"Limca 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"limca.jpeg"},
+
+// --- JUICE ---
+{name:"Frooti Mango 160ml",price:20,mrp:25,cat:"snacks",sub:"juice",unit:"pc",img:"frooti.jpeg"},
+{name:"Maaza 600ml",price:40,mrp:50,cat:"snacks",sub:"juice",unit:"pc",img:"maaza.jpeg"},
+{name:"Real Juice 1L",price:110,mrp:130,cat:"snacks",sub:"juice",unit:"pc",img:"real.jpeg"},
+
+// --- WATER ---
+{name:"Water 1L Bisleri",price:20,mrp:20,cat:"snacks",sub:"water",unit:"pc",img:"water.jpeg"},
+{name:"Water 500ml",price:10,mrp:10,cat:"snacks",sub:"water",unit:"pc",img:"water500.jpeg"},
+{name:"Water 5L Jar",price:80,mrp:90,cat:"snacks",sub:"water",unit:"pc",img:"water5l.jpeg"},
+
+// --- GARBAGE & COIL ---
+{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"garbage.jpeg"},
+{name:"Mortein Coil 10pc",price:42,mrp:55,cat:"veg",sub:"coil",unit:"pc",img:"mortein.jpeg"},
+{name:"All Out Liquid",price:78,mrp:90,cat:"veg",sub:"coil",unit:"pc",img:"allout.jpeg"},
+{name:"Harpic 500ml",price:95,mrp:110,cat:"veg",sub:"garbage",unit:"pc",img:"harpic.jpeg"},
+{name:"Vim Bar 250g",price:28,mrp:32,cat:"veg",sub:"garbage",unit:"pc",img:"vim.jpeg"}
 ];
 let qtyList=items.map(()=>1);let cart={},total=0,mrpTotal=0,deliveryCharge=10,grandTotal=0,handling=2;
 let orderNo=parseInt(localStorage.getItem('roop_order_no')||'1001');
