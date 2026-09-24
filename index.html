@@ -273,11 +273,34 @@ function updateBill(){
  document.getElementById('totalBtn').innerText='₹'+grandTotal;
 }
 let listDiv=document.getElementById('list');
-function render(all);
+function render(all){
  listDiv.innerHTML="";
  all.forEach((p)=>{
-  let i=items.indexOf(p);let off=Math.round((1-p.price/p.mrp)*100);
-  listDiv.innerHTML+=`<div class="card"><div class="off">${off}% OFF</div><img src="${p.img}" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"><h3>${p.name}</h3><div class="priceRow"><b>₹${p.price}</b><s>₹${p.mrp}</s><span>${off}% OFF</span></div><div class="qty"><button onclick="changeQ(${i},-1)">−</button><b id="q${i}">${qtyList[i]} ${p.unit}</b><button onclick="changeQ(${i},1)">+</button></div><button class="addBtn" onclick="add(${i})">ADD</button></div>`;
+  let i=items.indexOf(p);
+  let off=Math.round((1-p.price/p.mrp)*100);
+
+  listDiv.innerHTML+=`
+  <div class="card">
+   <div class="off">${off}% OFF</div>
+
+   <img src="${p.img}" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+
+   <h3>${p.name}</h3>
+
+   <div class="priceRow">
+    <b>₹${p.price}</b>
+    <s>₹${p.mrp}</s>
+    <span>${off}% OFF</span>
+   </div>
+
+   <div class="qty">
+    <button onclick="changeQ(${i},-1)">−</button>
+    <b id="q${i}">${qtyList[i]} ${p.unit}</b>
+    <button onclick="changeQ(${i},1)">+</button>
+   </div>
+
+   <button class="addBtn" onclick="add(${i})">ADD</button>
+  </div>`;
  });
 }
 function applyFilters(){
