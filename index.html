@@ -30,12 +30,17 @@ body{background:#fff8f0;padding-bottom:110px}
 .qty button{width:26px;height:26px;border-radius:50%;border:0;background:#FF6A00;color:#fff;font-weight:800}
 .qty b{font-size:13px}
 .addBtn{width:100%;background:#fff;border:1.5px solid #FF6A00;color:#FF6A00;padding:9px;border-radius:12px;font-weight:900}
-#basket{position:fixed;bottom:12px;left:12px;right:12px;background:#FF6A00;color:#fff;padding:14px 18px;border-radius:16px;display:none;justify-content:space-between;z-index:30}
-#cartPage{display:none;background:#fff;margin:12px;padding:16px;border-radius:18px}
-#cartPage input,#cartPage textarea,#cartPage select{width:100%;padding:12px;margin:6px 0;border:1.5px solid #ffd1a6;border-radius:10px}
-.billBox{background:#fff8f0;padding:12px;border-radius:12px;margin:10px 0;border:1px dashed #FF6A00}
-.billRow{display:flex;justify-content:space-between;margin:4px 0;font-size:14px}
-.billRow.grand{font-weight:900;font-size:16px;border-top:1px solid #ffd1a6;padding-top:6px;margin-top:6px}
+/* PROFESSIONAL BASKET - Blinkit Style */
+#basket{position:fixed;bottom:12px;left:12px;right:12px;background:#0c831f;color:#fff;padding:14px 18px;border-radius:16px;display:none;justify-content:space-between;align-items:center;z-index:30;box-shadow:0 -6px 18px rgba(0,0,0,.2)}
+#basket.show{display:flex}
+#cartPage{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;align-items:flex-end}
+#cartPage.show{display:flex}
+.cartSheet{width:100%;background:#f5f5f7;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0}
+.cartHead{padding:16px;background:#fff;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5;border-radius:20px 20px 0 0;border-bottom:1px solid #eee}
+.saveTop{background:#e6f4ff;color:#256fef;margin:12px;padding:10px 14px;border-radius:12px;display:flex;justify-content:space-between;font-weight:800;font-size:13px}
+.billBox{background:#fff;padding:14px;border-radius:12px;margin:12px;border:1px solid #eee}
+.billRow{display:flex;justify-content:space-between;margin:6px 0;font-size:13px}
+.billRow.grand{font-weight:900;font-size:16px;border-top:1px dashed #ddd;padding-top:8px;margin-top:8px}
 #orderSuccess{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center;padding:20px}
 </style>
 </head>
@@ -56,26 +61,32 @@ body{background:#fff8f0;padding-bottom:110px}
 <div class="catItem" onclick="filterIcon('coil',this)"><div class="catIcon">🦟</div><p>Coil</p></div>
 </div>
 <div class="products" id="list"></div>
-<div id="cartPage">
-<h3>🛒 My Order - <span id="orderIdShow">ROOP-1001</span></h3>
-<div id="cartItems" style="margin:10px 0;font-size:13px"></div>
+<div id="cartPage" onclick="if(event.target.id=='cartPage') closeCart()">
+<div class="cartSheet">
+<div class="cartHead"><h3>🛒 My Order - <span id="orderIdShow">ROOP-1001</span></h3><span onclick="closeCart()" style="font-size:24px;cursor:pointer">✕</span></div>
+<div class="saveTop"><span>Your total savings</span><span id="saveTop">₹0</span></div>
+<div style="background:#fff;margin:12px;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center;border:1px solid #eee"><div style="font-size:24px">⏱️</div><div><b>Delivery in 1 Hour</b><br><small>Shipment of <span id="itemCount">0</span> item</small></div></div>
+<div id="cartItems" style="margin:12px"></div>
 <div class="billBox">
-<div class="billRow"><span>Product Total</span><span>₹<span id="pTotal">0</span></span></div>
+<h4 style="margin-bottom:10px">Bill details</h4>
+<div class="billRow"><span>Items total <small id="savedText" style="color:#256fef"></small></span><span>₹<span id="pTotal">0</span> <s style="color:#999;font-size:11px" id="mrpTotal"></s></span></div>
 <div class="billRow"><span>Delivery (<span id="areaName">Hemtabad</span>)</span><span>₹<span id="dCharge">10</span></span></div>
+<div class="billRow"><span>Handling charge</span><span>₹2</span></div>
 <div class="billRow grand"><span>Grand Total (COD)</span><span>₹<span id="gt">0</span></span></div>
-<p style="font-size:11px;color:#666;margin-top:6px">* ₹299+ order e FREE delivery!</p>
 </div>
+<div style="margin:0 12px;background:#fff3e8;border-radius:10px;padding:10px 14px;font-size:12px;color:#FF6A00;font-weight:700;border:1px dashed #FF6A00" id="freeDelMsg">Shop for ₹299+ to get FREE delivery!</div>
+<div style="background:#fff;margin:12px;border-radius:12px;padding:12px;border:1px solid #eee">
 <input id="cName" placeholder="Your Name *">
 <input id="cPhone" placeholder="Phone *">
 <select id="cArea" onchange="calcDelivery()"><option value="Hemtabad Bazar">Hemtabad Bazar - ₹10</option><option value="Bangalbari">Bangalbari - ₹15</option><option value="Baharail">Baharail - ₹20</option><option value="Other">Other - ₹25</option></select>
 <textarea id="cAddr" placeholder="Full Address"></textarea>
 <div style="margin:10px 0"><label><input type="radio" name="pay" value="COD" checked> 💵 COD</label> &nbsp; <label><input type="radio" name="pay" value="Online"> 📱 Online</label></div>
-<button onclick="sendWA()" style="width:100%;background:#25D366;color:#fff;padding:14px;border:0;border-radius:12px;font-weight:900">✅ Confirm - WhatsApp</button>
-<button onclick="this.parentElement.style.display='none'" style="width:100%;margin-top:8px;padding:10px;border:0;background:#eee;border-radius:10px">Close</button>
 </div>
-<div id="orderSuccess"><div style="background:#fff;padding:24px;border-radius:20px;text-align:center;max-width:320px;width:100%"><div style="font-size:50px">✅</div><h2 style="color:#FF6A00">Order Received!</h2><p>Order ID: <b id="successId">ROOP-1001</b></p><p style="font-size:13px;color:#666;margin-top:8px">1 ghontay delivery hobe!</p><button onclick="document.getElementById('orderSuccess').style.display='none'" style="margin-top:15px;width:100%;background:#FF6A00;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">OK</button></div></div>
-<div id="basket"><span>🧺 ₹<span id="bTotal">0</span> (<span id="bCount">0</span>) | Grand: ₹<span id="bGrand">0</span></span><button onclick="showCart()" style="background:#fff;color:#FF6A00;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart</button></div>
-<script>
+<div style="background:#0c831f;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:800;margin:12px;border-radius:12px;cursor:pointer" onclick="sendWA()"><span><span id="totalBtn">₹0</span><br><small style="font-weight:400;font-size:11px">TOTAL • <span id="bCount">0</span> item</small></span><span>Login to Proceed ▶</span></div>
+</div>
+</div>
+
+<div id="basket" onclick="showCart()"><span id="basketText">🧺 0 item | ₹0</span><button style="background:#fff;color:#0c831f;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart ▶</button></div>
 let curIcon='all';let curMain='all';
 let items=[
 {name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpeg"},
