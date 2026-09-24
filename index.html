@@ -77,7 +77,12 @@ input,select,textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd
 <div style="background:#fff;margin:12px;border-radius:12px;padding:12px;border:1px solid #eee">
 <input id="cName" placeholder="Your Name *">
 <input id="cPhone" placeholder="Phone *">
-<select id="cArea" onchange="calcDelivery()"><option>Hemtabad Bazar - ₹10</option><option>Bangalbari - ₹15</option><option>Baharail - ₹20</option><option>Other - ₹25</option></select>
+<select id="cArea" onchange="calcDelivery()">
+<option value="Hemtabad Bazar">Hemtabad Bazar - ₹10</option>
+<option value="Bangalbari">Bangalbari - ₹15</option>
+<option value="Baharail">Baharail - ₹20</option>
+<option value="Other">Other - ₹25</option>
+</select>
 <textarea id="cAddr" placeholder="Full Address"></textarea>
 <div style="margin:10px 0"><label><input type="radio" name="pay" value="COD" checked> 💵 COD</label> &nbsp; <label><input type="radio" name="pay" value="Online"> 📱 Online</label></div>
 </div>
@@ -159,9 +164,21 @@ function update(){
  document.getElementById('cartItems').innerHTML=h||'<p style="text-align:center;color:#999">Cart empty</p>';
 }
 function sendWA(){
- let n=document.getElementById('cName').value;let ph=document.getElementById('cPhone').value;let a=document.getElementById('cAddr').value;let area=document.getElementById('cArea').value;
+ if(Object.keys(cart).length===0){
+  alert("Cart is empty - Add some products!");
+  return;
+ }
+ let n=document.getElementById('cName').value.trim();
+ let ph=document.getElementById('cPhone').value.trim();
+ let a=document.getElementById('cAddr').value.trim();
+ let area=document.getElementById('cArea').value;
  let pay=document.querySelector('input[name="pay"]:checked').value;
- if(!n||!ph){alert("Name Phone din");return;}
+
+ if(!n || !ph || !a){
+  alert("Name, Phone and Address din");
+  return;
+ }
+
  let orderId=getOrderId();
  let msg=`*🛒 NEW ORDER - ${orderId}*%0A%0A*Customer:* ${n}%0A*Phone:* ${ph}%0A*Area:* ${area}%0A*Address:* ${a}%0A*Payment:* ${pay}%0A%0A*--- Items ---*%0A`;
  for(let k in cart){msg+=`• ${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}%0A`;}
