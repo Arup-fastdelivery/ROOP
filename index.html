@@ -78,21 +78,22 @@ body{background:#fff8f0;padding-bottom:110px}
 <div style="background:#fff;margin:12px;border-radius:12px;padding:12px;border:1px solid #eee">
 <input id="cName" placeholder="Your Name *">
 <input id="cPhone" placeholder="Phone *">
-<select id="cArea" onchange="calcDelivery()"><option value="Hemtabad Bazar">Hemtabad Bazar - ₹10</option><option value="Bangalbari">Bangalbari - ₹15</option><option value="Baharail">Baharail - ₹20</option><option value="Other">Other - ₹25</option></select>
+<select id="cArea" onchange="calcDelivery()"><option value="Hemtabad Bazar">Hemtabad Bazar - ₹10</option><option value="Bangalbari">Bangalbari - ₹15</option><option value="Baharail">Baharail - ₹20</option>
+ <option value="Other">Other - ₹25</option></select>
 <textarea id="cAddr" placeholder="Full Address"></textarea>
 <div style="margin:10px 0"><label><input type="radio" name="pay" value="COD" checked> 💵 COD</label> &nbsp; <label><input type="radio" name="pay" value="Online"> 📱 Online</label></div>
 </div>
-<div style="background:#0c831f;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:800;margin:12px;border-radius:12px;cursor:pointer" onclick="sendWA()"><span><span id="totalBtn">₹0</span><br><small style="font-weight:400;font-size:11px">TOTAL • <span id="bCount">0</span> item</small></span><span>Login to Proceed ▶</span></div>
-</div>
+<div style="background:#0c831f;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:800;margin:12px;border-radius:12px;cursor:pointer" onclick="sendWA()"><span>
+ <span id="totalBtn">₹0</span><br><small style="font-weight:400;font-size:11px">TOTAL • <span id="bCount">0</span> item</small></span><span>Login to Proceed ▶</span></div>
 <div id="basket" onclick="showCart()"><span id="basketText">🧺 0 item | ₹0</span><button style="background:#fff;color:#0c831f;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart ▶</button></div>
-
-<div id="orderSuccess"><div style="background:#fff;padding:24px;border-radius:20px;text-align:center;max-width:320px;width:100%"><div style="font-size:50px">✅</div><h2 style="color:#FF6A00">Order Received!</h2><p>Order ID: <b id="successId">ROOP-1001</b></p><p style="font-size:13px;color:#666;margin-top:8px">1 ghontay delivery hobe!</p><button onclick="document.getElementById('orderSuccess').style.display='none'" style="margin-top:15px;width:100%;background:#FF6A00;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">OK</button></div></div>
+</div>
+<div id="orderSuccess"><div style="background:#fff;padding:24px;border-radius:20px;text-align:center;max-width:320px;width:100%"><div style="font-size:50px">✅</div>
+ <h2 style="color:#FF6A00">Order Received!</h2><p>Order ID: <b id="successId">ROOP-1001</b></p><p style="font-size:13px;color:#666;margin-top:8px">1 ghontay delivery hobe!</p>
+ <button onclick="document.getElementById('orderSuccess').style.display='none'" style="margin-top:15px;width:100%;background:#FF6A00;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">OK</button></div></div>
 
 <script>
 let curIcon='all';let curMain='all';
 
-<script>  <-- EI LINE TA SOBCHEYE IMPORTANT, ETA NA THAKLE KAJ KORBE NA
-let curIcon='all';let curMain='all';
 let items=[
 {name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpeg"},
 {name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"bosta",img:"tuli.jpeg"},
@@ -265,13 +266,14 @@ function calcDelivery(){
 function updateBill(){
  document.getElementById('pTotal').innerText=total;
  document.getElementById('dCharge').innerText=deliveryCharge;
+
  grandTotal=total+deliveryCharge;
+
  document.getElementById('gt').innerText=grandTotal;
- document.getElementById('bTotal').innerText=total;
- document.getElementById('bGrand').innerText=grandTotal;
+ document.getElementById('totalBtn').innerText='₹'+grandTotal;
 }
 let listDiv=document.getElementById('list');
-function render(all){
+function render(all);
  listDiv.innerHTML="";
  all.forEach((p)=>{
   let i=items.indexOf(p);let off=Math.round((1-p.price/p.mrp)*100);
