@@ -865,18 +865,18 @@ button,input,select,textarea{
     <p>Cold</p>
   </div>
 
-  <div class="category"
-       data-category="juice"
-       onclick="filterCategory('juice',this)">
-    <div class="categoryIcon">🧃</div>
-    <p>Juice</p>
-  </div>
+ <div class="category" 
+   data-category="cooking" 
+   onclick="filterCategory('cooking',this)">
+   <div class="categoryIcon">🍳</div>
+   <p>Cooking</p>
+ </div>
 
-  <div class="category"
-       data-category="water"
-       onclick="filterCategory('water',this)">
-    <div class="categoryIcon">💧</div>
-    <p>Water</p>
+  <div class="category" 
+    data-category="momos" 
+    onclick="filterCategory('momos',this)">
+    <div class="categoryIcon">🥟</div>
+    <p>Momos</p>
   </div>
 
   <div class="category"
@@ -1390,6 +1390,12 @@ button,input,select,textarea{
   {name:"Cottonseed Oil / Binola Tel 1L",price:125,mrp:145,cat:"oil",unit:"L",img:"/cottonseed_oil.jpeg"},
   {name:"Canola Oil 1L",price:195,mrp:230,cat:"oil",unit:"L",img:"/canola_oil.jpeg"},
   {name:"Vanaspati / Dalda 500g",price:85,mrp:105,cat:"oil",unit:"500g",img:"/vanaspati.jpeg"}
+  {name:"Veg Momos 10pc",price:80,mrp:100,cat:"momos",unit:"10 pc",img:"images/momos_veg.jpeg"},
+  {name:"Chicken Momos 10pc",price:120,mrp:150,cat:"momos",unit:"10 pc",img:"images/momos_chicken.jpeg"},
+  {name:"Momos Chutney 100g",price:25,mrp:35,cat:"momos",unit:"100 g",img:"images/chutney.jpeg"},
+  {name:"Frozen Momos Pack",price:150,mrp:180,cat:"momos",unit:"1 pack",img:"images/frozen_momos.jpeg"},
+  {name:"Cooking Masala Combo",price:149,mrp:199,cat:"cooking",unit:"1 combo",img:"images/garam_masala.jpeg"},
+  {name:"Recipe Card - Veg Curry",price:0,mrp:0,cat:"cooking",unit:"free",img:"images/cookbook.jpeg"},
 ];
 
 console.log("Total products:", products.length);
