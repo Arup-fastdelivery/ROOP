@@ -1,366 +1,2586 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROOP - All in One Delivery in 1 Hours</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#FF6A00">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ROOP - All in One Delivery</title>
+
+<meta name="theme-color" content="#0c831f">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#fff8f0;padding-bottom:110px}
-.header{background:#fff;padding:12px 16px;position:sticky;top:0;z-index:20;border-bottom:1px solid #ffe0c0;display:flex;align-items:center;gap:10px}
-.logo{width:44px;height:44px;border-radius:12px;background:#FF6A00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px}
-.header h1{font-size:16px;line-height:1.1}.header h1 span{color:#FF6A00}
-.header p{font-size:11px;color:#666;font-weight:600}
-.search{margin:12px 16px;background:#fff;border:1.5px solid #ffd1a6;padding:12px 16px;border-radius:14px;display:flex;gap:8px}
-.search input{border:0;outline:0;width:100%;font-size:14px}
-.cats{display:flex;gap:12px;padding:8px 16px;overflow:auto}.cats::-webkit-scrollbar{display:none}
-.catItem{text-align:center;min-width:68px;cursor:pointer;opacity:0.7;border-bottom:3px solid transparent;padding-bottom:6px}
-.catItem.active{opacity:1;border-bottom:3px solid #FF6A00;color:#FF6A00}
-.catIcon{width:52px;height:52px;background:#fff3e8;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;border:1px solid #ffe0c0}
-.catItem p{font-size:11px;font-weight:700;margin-top:5px}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 16px}
-.card{background:#fff;border:1px solid #f0f0f0;border-radius:18px;padding:10px;position:relative;box-shadow:0 2px 10px rgba(0,0,0,.03)}
-.off{position:absolute;top:8px;left:8px;background:#256fef;color:#fff;font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px}
-.card img{width:100%;height:105px;object-fit:contain;background:#fff;border-radius:12px;margin-top:10px}
-.card h3{font-size:13px;margin:8px 0 2px;height:32px;overflow:hidden}
-.priceRow{display:flex;gap:6px;align-items:center;margin:4px 0}
-.priceRow b{font-size:14px}.priceRow s{font-size:11px;color:#999}.priceRow span{font-size:10px;color:#fff;background:#2e7d32;padding:2px 5px;border-radius:4px;font-weight:700}
-.qty{display:flex;align-items:center;justify-content:space-between;background:#fff7f0;border:1px solid #ffd1a6;padding:5px 8px;border-radius:20px;margin:8px 0}
-.qty button{width:26px;height:26px;border-radius:50%;border:0;background:#FF6A00;color:#fff;font-weight:800}
-.qty b{font-size:13px}
-.addBtn{width:100%;background:#fff;border:1.5px solid #FF6A00;color:#FF6A00;padding:9px;border-radius:12px;font-weight:900}
-#basket{position:fixed;bottom:12px;left:12px;right:12px;background:#0c831f;color:#fff;padding:14px 18px;border-radius:16px;display:none;justify-content:space-between;align-items:center;z-index:40}
-#cartPage{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;align-items:flex-end}
-.cartSheet{width:100%;background:#f5f5f7;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0}
-.cartHead{padding:16px;background:#fff;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5;border-radius:20px 20px 0 0;border-bottom:1px solid #eee}
-.saveTop{background:#e6f4ff;color:#256fef;margin:12px;padding:10px 14px;border-radius:12px;display:flex;justify-content:space-between;font-weight:800;font-size:13px}
-.billBox{background:#fff;padding:14px;border-radius:12px;margin:12px;border:1px solid #eee}
-.billRow{display:flex;justify-content:space-between;margin:6px 0;font-size:13px}
-.billRow.grand{font-weight:900;font-size:16px;border-top:1px dashed #ddd;padding-top:8px;margin-top:8px}
-#orderSuccess{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center;padding:20px}
-input,select,textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:8px;font-size:14px}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+body{
+    background:#f7f8f7;
+    color:#222;
+    padding-bottom:80px;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+/* HEADER */
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#fff;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:8px 14px;
+    box-shadow:0 1px 8px rgba(0,0,0,.08);
+}
+
+.logoBox{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.logo{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#ff6a00;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:900;
+}
+
+.logoText{
+    font-weight:900;
+    font-size:19px;
+    color:#0c831f;
+    line-height:18px;
+}
+
+.logoText small{
+    display:block;
+    font-size:9px;
+    color:#777;
+    font-weight:600;
+}
+
+.cartTop{
+    position:relative;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#f1f8f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    cursor:pointer;
+}
+
+.cartBadge{
+    position:absolute;
+    right:-2px;
+    top:-2px;
+    min-width:19px;
+    height:19px;
+    padding:0 5px;
+    border-radius:20px;
+    background:#ff6a00;
+    color:#fff;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    font-weight:800;
+}
+
+/* LOCATION */
+
+.locationBar{
+    background:#fff;
+    padding:9px 14px;
+    border-bottom:1px solid #eee;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.locationBar small{
+    color:#777;
+    font-size:10px;
+}
+
+.locationBar b{
+    font-size:12px;
+    color:#333;
+}
+
+/* SEARCH */
+
+.searchBox{
+    padding:10px 12px;
+    background:#fff;
+}
+
+.searchInner{
+    height:44px;
+    background:#f3f5f3;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    padding:0 12px;
+    gap:8px;
+}
+
+.searchInner span{
+    font-size:18px;
+}
+
+.searchInner input{
+    border:0;
+    outline:0;
+    background:transparent;
+    width:100%;
+    font-size:13px;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:4px 12px 12px;
+    background:#fff;
+    scrollbar-width:none;
+}
+
+.categories::-webkit-scrollbar{
+    display:none;
+}
+
+.catBtn{
+    white-space:nowrap;
+    border:1px solid #e2e2e2;
+    background:#fff;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.catBtn.active{
+    background:#0c831f;
+    color:#fff;
+    border-color:#0c831f;
+}
+
+/* OFFER */
+
+.offer{
+    margin:10px 12px;
+    border-radius:14px;
+    padding:14px;
+    background:linear-gradient(135deg,#0c831f,#20a83a);
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.offer h2{
+    font-size:17px;
+}
+
+.offer p{
+    font-size:10px;
+    margin-top:4px;
+    opacity:.9;
+}
+
+.offerIcon{
+    font-size:38px;
+}
+
+/* PRODUCTS */
+
+.sectionTitle{
+    padding:8px 13px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.sectionTitle h3{
+    font-size:16px;
+}
+
+.sectionTitle span{
+    font-size:10px;
+    color:#777;
+}
+
+.productGrid{
+    padding:0 10px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.product{
+    background:#fff;
+    border-radius:12px;
+    padding:8px;
+    box-shadow:0 1px 5px rgba(0,0,0,.06);
+    overflow:hidden;
+}
+
+.productImg{
+    width:100%;
+    height:135px;
+    object-fit:contain;
+    border-radius:9px;
+    background:#fafafa;
+}
+
+.productName{
+    font-size:12px;
+    font-weight:700;
+    margin-top:7px;
+    min-height:32px;
+}
+
+.productUnit{
+    font-size:10px;
+    color:#777;
+    margin-top:3px;
+}
+
+.priceRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:7px;
+}
+
+.price{
+    font-size:14px;
+    font-weight:900;
+}
+
+.mrp{
+    color:#999;
+    font-size:10px;
+    margin-left:3px;
+}
+
+.addBtn{
+    border:1px solid #0c831f;
+    background:#fff;
+    color:#0c831f;
+    font-weight:800;
+    border-radius:7px;
+    padding:6px 12px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.addBtn:hover{
+    background:#0c831f;
+    color:#fff;
+}
+
+/* TRUST */
+
+.trust{
+    margin:18px 12px;
+    background:#fff;
+    border-radius:12px;
+    padding:14px 8px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border:1px solid #eee;
+}
+
+.trustItem{
+    text-align:center;
+    border-right:1px solid #eee;
+}
+
+.trustItem:last-child{
+    border-right:0;
+}
+
+.trustItem div{
+    font-size:22px;
+}
+
+.trustItem b{
+    display:block;
+    font-size:9px;
+    margin-top:4px;
+}
+
+.trustItem span{
+    display:block;
+    font-size:8px;
+    color:#777;
+    margin-top:2px;
+}
+
+/* BASKET */
+
+.basketBar{
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:10px;
+    z-index:900;
+    background:#0c831f;
+    color:#fff;
+    border-radius:12px;
+    padding:11px 15px;
+    display:none;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    cursor:pointer;
+}
+
+.basketBar b{
+    font-size:13px;
+}
+
+.basketBar small{
+    font-size:10px;
+}
+
+/* CART PAGE */
+
+#cartPage{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(0,0,0,.5);
+    align-items:flex-end;
+}
+
+.cartSheet{
+    background:#f5f6f5;
+    width:100%;
+    max-height:94vh;
+    overflow-y:auto;
+    border-radius:18px 18px 0 0;
+    padding-bottom:15px;
+    animation:slideUp .25s ease;
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateY(0);
+    }
+}
+
+.cartHead{
+    background:#fff;
+    padding:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:5;
+}
+
+.cartHead h3{
+    font-size:14px;
+}
+
+/* SAVINGS */
+
+.saveTop{
+    margin:10px;
+    padding:10px 12px;
+    background:#e9f8ed;
+    color:#0c831f;
+    border:1px solid #b9e5c1;
+    border-radius:9px;
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    font-weight:800;
+}
+
+/* DELIVERY INFO */
+
+.deliveryInfo{
+    background:#fff;
+    margin:10px;
+    border-radius:10px;
+    padding:10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    border:1px solid #eee;
+}
+
+.deliveryInfoIcon{
+    font-size:22px;
+}
+
+.deliveryInfo b{
+    font-size:13px;
+}
+
+.deliveryInfo small{
+    font-size:11px;
+    color:#777;
+}
+
+/* CART ITEMS */
+
+.cartItem{
+    background:#fff;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:8px;
+    border:1px solid #eee;
+}
+
+.cartItemTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.cartItemName{
+    font-size:12px;
+    font-weight:800;
+}
+
+.cartItemPrice{
+    color:#666;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.cartItemTotal{
+    font-size:13px;
+    font-weight:900;
+}
+
+.quantityBox{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin-top:8px;
+    background:#f1f8e9;
+    border:1px solid #c8e6c9;
+    border-radius:20px;
+    padding:3px 8px;
+    width:max-content;
+}
+
+.qtyBtn{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    border:0;
+    background:#0c831f;
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.qtyNumber{
+    min-width:28px;
+    text-align:center;
+    font-size:12px;
+    font-weight:800;
+}
+
+.removeBtn{
+    margin-left:8px;
+    color:#e53935;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+/* BILL */
+
+.billBox{
+    margin:10px;
+    background:#fff;
+    border-radius:10px;
+    padding:12px;
+    border:1px solid #eee;
+}
+
+.billBox h4{
+    margin-bottom:8px;
+    font-size:13px;
+}
+
+.billRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:6px 0;
+    font-size:12px;
+}
+
+.billRow small{
+    color:#256fef;
+    font-weight:700;
+}
+
+.billRow s{
+    color:#999;
+    font-size:10px;
+    margin-left:3px;
+}
+
+.grand{
+    border-top:1px dashed #ddd;
+    margin-top:5px;
+    padding-top:10px;
+    font-size:14px;
+    font-weight:900;
+}
+
+/* FREE DELIVERY */
+
+.freeDelMsg{
+    margin:0 10px;
+    background:#fff3e8;
+    border-radius:8px;
+    padding:8px 12px;
+    font-size:11px;
+    color:#ff6a00;
+    font-weight:700;
+    border:1px dashed #ff6a00;
+}
+
+/* CUSTOMER */
+
+.customerBox{
+    background:#fff;
+    margin:10px;
+    border-radius:10px;
+    padding:10px;
+    border:1px solid #eee;
+}
+
+.customerBox input,
+.customerBox select,
+.customerBox textarea{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:10px;
+    margin-bottom:8px;
+    outline:none;
+    font-size:12px;
+    background:#fff;
+}
+
+.customerBox textarea{
+    min-height:70px;
+    resize:none;
+}
+
+/* PAYMENT */
+
+.paymentBox{
+    margin:2px 0 8px;
+    padding:9px;
+    background:#f8fdf8;
+    border-radius:8px;
+    border:1px solid #c8e6c9;
+}
+
+.paymentBox b{
+    font-size:12px;
+}
+
+.paymentBox label{
+    display:block;
+    font-size:12px;
+    margin-top:7px;
+}
+
+/* PLACE ORDER */
+
+.placeOrder{
+    background:#0c831f;
+    color:#fff;
+    padding:12px 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:800;
+    margin:10px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.placeOrder:hover{
+    background:#086d18;
+}
+
+.placeOrder #totalBtn{
+    font-size:15px;
+}
+
+.placeOrder small{
+    font-weight:400;
+    font-size:10px;
+}
+
+/* SUCCESS */
+
+#orderSuccess{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    background:rgba(0,0,0,.6);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.successBox{
+    background:#fff;
+    width:100%;
+    max-width:350px;
+    border-radius:18px;
+    padding:25px 18px;
+    text-align:center;
+}
+
+.successIcon{
+    width:70px;
+    height:70px;
+    margin:auto;
+    border-radius:50%;
+    background:#e8f7eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+}
+
+.successBox h2{
+    margin-top:12px;
+    font-size:21px;
+    color:#0c831f;
+}
+
+.successBox p{
+    margin-top:7px;
+    font-size:12px;
+    color:#666;
+    line-height:20px;
+}
+
+.successOrder{
+    margin:15px 0;
+    padding:10px;
+    border-radius:9px;
+    background:#f5f5f5;
+    font-size:13px;
+    font-weight:800;
+}
+
+.successClose{
+    width:100%;
+    border:0;
+    background:#0c831f;
+    color:#fff;
+    padding:12px;
+    border-radius:9px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+/* EMPTY */
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:40px 15px;
+    color:#999;
+}
+
+.empty div{
+    font-size:45px;
+    margin-bottom:8px;
+}
+
+.empty p{
+    font-size:12px;
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+
+    .productGrid{
+        grid-template-columns:repeat(4,1fr);
+        max-width:1000px;
+        margin:auto;
+    }
+
+    .searchBox,
+    .categories,
+    .offer,
+    .sectionTitle,
+    .trust{
+        max-width:1000px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .cartSheet{
+        max-width:500px;
+        margin-left:auto;
+    }
+}
 </style>
 </head>
+
 <body>
-<div class="header"><div class="logo">R</div><div><h1>ROOP <span>All in One</span></h1><p>⚡ Delivery in 1 Hours | Hemtabad</p></div></div>
-<div class="search">🔍<input id="searchBox" placeholder="Search..." onkeyup="doSearch()"></div>
-<div class="cats">
-<div class="catItem active" onclick="filterIcon('all',this)"><div class="catIcon">🌿</div><p>All</p></div>
-<div class="catItem" onclick="filterIcon('veg',this)"><div class="catIcon">🥦</div><p>Veg</p></div>
-<div class="catItem" onclick="filterIcon('rice',this)"><div class="catIcon">🌾</div><p>Chal</p></div>
-<div class="catItem" onclick="filterIcon('oil',this)"><div class="catIcon">🛢️</div><p>Oil</p></div>
-<div class="catItem" onclick="filterIcon('masala',this)"><div class="catIcon">🌶️</div><p>Masala</p></div>
-<div class="catItem" onclick="filterIcon('snacks',this)"><div class="catIcon">🍿</div><p>Snacks</p></div>
-<div class="catItem" onclick="filterIcon('cold',this)"><div class="catIcon">🥤</div><p>Cold Drinks</p></div>
-<div class="catItem" onclick="filterIcon('juice',this)"><div class="catIcon">🧃</div><p>Juice</p></div>
-<div class="catItem" onclick="filterIcon('water',this)"><div class="catIcon">💧</div><p>Water</p></div>
-<div class="catItem" onclick="filterIcon('garbage',this)"><div class="catIcon">🧹</div><p>Garbage</p></div>
-<div class="catItem" onclick="filterIcon('coil',this)"><div class="catIcon">🦟</div><p>Coil</p></div>
-</div>
-<div class="products" id="list"></div>
 
-<div id="cartPage" onclick="if(event.target.id=='cartPage') closeCart()">
-<div class="cartSheet">
-<div class="cartHead"><h3>🛒 My Order - <span id="orderIdShow">ROOP-1001</span></h3><span onclick="closeCart()" style="font-size:24px;cursor:pointer">✕</span></div>
-<div class="saveTop"><span>Your total savings</span><span id="saveTop">₹0</span></div>
-<div style="background:#fff;margin:12px;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center;border:1px solid #eee"><div style="font-size:24px">⏱️</div><div><b>Delivery in 1 Hour</b><br><small>Shipment of <span id="itemCount">0</span> item</small></div></div>
-<div id="cartItems" style="margin:12px"></div>
-<div class="billBox">
-<h4 style="margin-bottom:10px">Bill details</h4>
-<div class="billRow"><span>Items total <small id="savedText" style="color:#256fef"></small></span><span>₹<span id="pTotal">0</span> <s style="color:#999;font-size:11px" id="mrpTotal"></s></span></div>
-<div class="billRow"><span>Delivery (<span id="areaName">Hemtabad</span>)</span><span>₹<span id="dCharge">10</span></span></div>
-<div class="billRow"><span>Handling charge</span><span>₹2</span></div>
-<div class="billRow grand"><span>Grand Total (COD)</span><span>₹<span id="gt">0</span></span></div>
-</div>
-<div style="margin:0 12px;background:#fff3e8;border-radius:10px;padding:10px 14px;font-size:12px;color:#FF6A00;font-weight:700;border:1px dashed #FF6A00" id="freeDelMsg">Shop for ₹299+ to get FREE delivery!</div>
-<div style="background:#fff;margin:12px;border-radius:12px;padding:12px;border:1px solid #eee">
-<input id="cName" placeholder="Your Name *">
-<input id="cPhone" placeholder="Phone *">
-<select id="cArea" onchange="calcDelivery()">
-<option value="Hemtabad Bazar">Hemtabad Bazar - ₹10</option>
-<option value="Bangalbari">Bangalbari - ₹15</option>
-<option value="Baharail">Baharail - ₹20</option>
-<option value="Other">Other - ₹25</option>
-</select>
-<textarea id="cAddr" placeholder="Full Address"></textarea>
-<div style="margin:10px 0"><label><input type="radio" name="pay" value="COD" checked> 💵 COD</label> &nbsp; <label><input type="radio" name="pay" value="Online"> 📱 Online</label></div>
-</div>
-<div style="background:#0c831f;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:800;margin:12px;border-radius:12px;cursor:pointer" onclick="sendWA()"><span><span id="totalBtn">₹0</span><br><small style="font-weight:400;font-size:11px">TOTAL • <span id="bCount">0</span> item</small></span><span>Login to Proceed ▶</span></div>
-</div>
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logoBox">
+
+        <div class="logo">
+            R
+        </div>
+
+        <div class="logoText">
+            ROOP
+            <small>All in One Delivery</small>
+        </div>
+
+    </div>
+
+    <div class="cartTop" onclick="showCart()">
+
+        🛒
+
+        <span id="cartBadge" class="cartBadge">
+            0
+        </span>
+
+    </div>
+
+</header>
+
+
+<!-- LOCATION -->
+
+<div class="locationBar">
+
+    <div>
+        <small>Delivering to</small><br>
+        <b>📍 Hemtabad</b>
+    </div>
+
+    <div>
+        <small>Delivery</small><br>
+        <b style="color:#0c831f">⚡ 1 Hour</b>
+    </div>
+
 </div>
 
-<div id="basket" onclick="showCart()"><span id="basketText">🧺 0 item | ₹0</span><button style="background:#fff;color:#0c831f;border:0;padding:8px 14px;border-radius:20px;font-weight:800">View Cart ▶</button></div>
 
-<div id="orderSuccess"><div style="background:#fff;padding:24px;border-radius:20px;text-align:center;max-width:320px;width:100%">
- <div style="font-size:50px">✅</div><h2 style="color:#FF6A00">Order Received!</h2><p>Order ID: <b id="successId">ROOP-1001</b></p><button onclick="document.getElementById('orderSuccess').style.display='none'" style="margin-top:15px;width:100%;background:#FF6A00;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">OK</button></div></div>
+<!-- SEARCH -->
+
+<div class="searchBox">
+
+    <div class="searchInner">
+
+        <span>🔍</span>
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Search for products..."
+            oninput="doSearch()"
+        >
+
+    </div>
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<div class="categories" id="categories">
+
+    <button class="catBtn active" onclick="filterCat('all',this)">
+        All
+    </button>
+
+    <button class="catBtn" onclick="filterCat('veg',this)">
+        🥬 Veg
+    </button>
+
+    <button class="catBtn" onclick="filterCat('rice',this)">
+        🍚 Rice
+    </button>
+
+    <button class="catBtn" onclick="filterCat('oil',this)">
+        🫗 Oil
+    </button>
+
+    <button class="catBtn" onclick="filterCat('masala',this)">
+        🌶️ Masala
+    </button>
+
+    <button class="catBtn" onclick="filterCat('snacks',this)">
+        🍿 Snacks
+    </button>
+
+    <button class="catBtn" onclick="filterCat('cold',this)">
+        🥤 Cold
+    </button>
+
+    <button class="catBtn" onclick="filterCat('juice',this)">
+        🧃 Juice
+    </button>
+
+    <button class="catBtn" onclick="filterCat('water',this)">
+        💧 Water
+    </button>
+
+    <button class="catBtn" onclick="filterCat('garbage',this)">
+        🗑️ Garbage
+    </button>
+
+    <button class="catBtn" onclick="filterCat('coil',this)">
+        🦟 Coil
+    </button>
+
+</div>
+
+
+<!-- OFFER -->
+
+<div class="offer">
+
+    <div>
+        <h2>Fresh Products 🥬</h2>
+        <p>Quality products delivered to your home.</p>
+    </div>
+
+    <div class="offerIcon">
+        🛵
+    </div>
+
+</div>
+
+
+<!-- PRODUCTS TITLE -->
+
+<div class="sectionTitle">
+
+    <h3>Popular Products</h3>
+
+    <span id="productCount">
+        0 Products
+    </span>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<div class="productGrid" id="productGrid"></div>
+
+
+<!-- TRUST -->
+
+<div class="trust">
+
+    <div class="trustItem">
+
+        <div>🔒</div>
+
+        <b>Safe & Secure</b>
+
+        <span>Secure order</span>
+
+    </div>
+
+
+    <div class="trustItem">
+
+        <div>🛵</div>
+
+        <b>Fast Delivery</b>
+
+        <span>Within 1 Hour</span>
+
+    </div>
+
+
+    <div class="trustItem">
+
+        <div>🥬</div>
+
+        <b>Fresh & Quality</b>
+
+        <span>Good products</span>
+
+    </div>
+
+</div>
+
+
+<!-- BASKET BAR -->
+
+<div
+    id="basket"
+    class="basketBar"
+    onclick="showCart()"
+>
+
+    <div>
+
+        <b id="basketText">
+            🧺 0 item | ₹0
+        </b>
+
+    </div>
+
+    <div>
+        View Cart →
+    </div>
+
+</div>
+
+
+<!-- CART PAGE -->
+
+<div
+    id="cartPage"
+    onclick="if(event.target.id=='cartPage') closeCart()"
+>
+
+    <div class="cartSheet">
+
+
+        <!-- CART HEADER -->
+
+        <div class="cartHead">
+
+            <h3>
+                🛒 My Order -
+                <span id="orderIdShow">
+                    ROOP-1001
+                </span>
+            </h3>
+
+            <span
+                onclick="closeCart()"
+                style="font-size:22px;cursor:pointer"
+            >
+                ✕
+            </span>
+
+        </div>
+
+
+        <!-- TOTAL SAVINGS -->
+
+        <div class="saveTop">
+
+            <span>
+                Your total savings
+            </span>
+
+            <span id="saveTop">
+                ₹0
+            </span>
+
+        </div>
+
+
+        <!-- DELIVERY INFO -->
+
+        <div class="deliveryInfo">
+
+            <div class="deliveryInfoIcon">
+                ⏱️
+            </div>
+
+            <div>
+
+                <b>
+                    Delivery in 1 Hour
+                </b>
+
+                <br>
+
+                <small>
+                    Shipment of
+                    <span id="itemCount">
+                        0
+                    </span>
+                    item
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- CART ITEMS -->
+
+        <div
+            id="cartItems"
+            style="margin:10px"
+        ></div>
+
+
+        <!-- BILL -->
+
+        <div class="billBox">
+
+            <h4>
+                Bill details
+            </h4>
+
+
+            <div class="billRow">
+
+                <span>
+
+                    Items total
+
+                    <small id="savedText"></small>
+
+                </span>
+
+                <span>
+
+                    ₹<span id="pTotal">0</span>
+
+                    <s id="mrpTotal"></s>
+
+                </span>
+
+            </div>
+
+
+            <div class="billRow">
+
+                <span>
+                    Delivery
+                    (
+                    <span id="areaName">
+                        Hemtabad Bazar
+                    </span>
+                    )
+                </span>
+
+                <span>
+                    ₹<span id="dCharge">10</span>
+                </span>
+
+            </div>
+
+
+            <div class="billRow">
+
+                <span>
+                    Handling charge
+                </span>
+
+                <span>
+                    ₹2
+                </span>
+
+            </div>
+
+
+            <div class="billRow grand">
+
+                <span>
+                    Grand Total
+                    (<span id="grandPayText">COD</span>)
+                </span>
+
+                <span>
+                    ₹<span id="gt">0</span>
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- FREE DELIVERY -->
+
+        <div
+            class="freeDelMsg"
+            id="freeDelMsg"
+        >
+            Shop for ₹299+ to get FREE delivery!
+        </div>
+
+
+        <!-- CUSTOMER -->
+
+        <div class="customerBox">
+
+            <input
+                id="cName"
+                placeholder="Your Name *"
+                type="text"
+            >
+
+
+            <input
+                id="cPhone"
+                placeholder="Phone *"
+                type="tel"
+                maxlength="10"
+            >
+
+
+            <select
+                id="cArea"
+                onchange="calcDelivery()"
+            >
+
+                <option value="Hemtabad Bazar">
+                    Hemtabad Bazar - ₹10
+                </option>
+
+                <option value="Bangalbari">
+                    Bangalbari - ₹15
+                </option>
+
+                <option value="Baharail">
+                    Baharail - ₹20
+                </option>
+
+                <option value="Other">
+                    Other - ₹25
+                </option>
+
+            </select>
+
+
+            <textarea
+                id="cAddr"
+                placeholder="Full Address *"
+            ></textarea>
+
+
+            <!-- PAYMENT -->
+
+            <div class="paymentBox">
+
+                <b>
+                    Payment Method:
+                </b>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="pay"
+                        value="COD"
+                        checked
+                        onchange="updatePaymentText()"
+                    >
+
+                    💵 Cash on Delivery
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="pay"
+                        value="Online"
+                        onchange="updatePaymentText()"
+                    >
+
+                    📱 Online Payment (UPI)
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLACE ORDER -->
+
+        <div
+            class="placeOrder"
+            onclick="sendWA()"
+        >
+
+            <span>
+
+                <span id="totalBtn">
+                    ₹0
+                </span>
+
+                <br>
+
+                <small>
+                    TOTAL •
+                    <span id="bCount">
+                        0
+                    </span>
+                    item
+                </small>
+
+            </span>
+
+
+            <span>
+                Place Order ▶
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- ORDER SUCCESS -->
+
+<div id="orderSuccess">
+
+    <div class="successBox">
+
+        <div class="successIcon">
+            ✓
+        </div>
+
+        <h2>
+            Order Received!
+        </h2>
+
+        <p>
+            Your order has been sent successfully.
+            We will contact you shortly.
+        </p>
+
+        <div class="successOrder">
+
+            Order ID:
+            <span id="successId">
+                ROOP-1001
+            </span>
+
+        </div>
+
+        <button
+            class="successClose"
+            onclick="closeSuccess()"
+        >
+            Continue Shopping
+        </button>
+
+    </div>
+
+</div>
+
 
 <script>
-let curIcon='all';
-let items=[
-{name:"Basmati Chal 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpeg"},
-{name:"Tuli Punjab Chal 25kg",price:1350,mrp:1550,cat:"veg",sub:"rice",unit:"Punja",img:"tuli.jpeg"},
-{name:"44 Number Chal 25kg",price:950,mrp:1100,cat:"veg",sub:"rice",unit:"44 Number",img:"44.jpeg"},
-{name:"KiliKoli Miniket 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"kilikoli.jpeg"},
-{name:"Begun / Brinjal 1kg",price:30,mrp:40,cat:"veg",sub:"veg",unit:"kg",img:"begun.jpg"},
-{name:"Dheros / Bhindi 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"500g",img:"dheros.jpeg"},
-{name:"Coconut 1pc",price:35,mrp:45,cat:"veg",sub:"veg",unit:"pc",img:"coconut.jpeg"},
-{name:"Potato / Aloo 1kg",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"potato.jpg"},
-{name:"Onion / Peyaj 1kg",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"onion.jpeg"},
-{name:"Tomato 1kg",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"tomato.jpg"},
-{name:"Cauliflower / Fulkopi 1pc",price:30,mrp:40,cat:"veg",sub:"veg",unit:"pc",img:"fulkopi.jpg"},
-{name:"Cabbage / Badhakopi 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"badhakopi.jpg"},
-{name:"Carrot / Gajor 500g",price:25,mrp:35,cat:"veg",sub:"veg",unit:"500g",img:"carrot.jpeg"},
-{name:"Radish / Mulo 1kg",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"radish.jpeg"},
-{name:"Pumpkin / Kumro 1kg",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"pumpkin.jpeg"},
-{name:"Bottle Gourd / Lau 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"lau.jpeg"},
-{name:"Bitter Gourd / Ucche 500g",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"ucche.jpeg"},
-{name:"Ridge Gourd / Jhinge 500g",price:24,mrp:34,cat:"veg",sub:"veg",unit:"kg",img:"jhinge.jpeg"},
-{name:"Snake Gourd / Chichinga 500g",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"chichinga.jpeg"},
-{name:"Pointed Gourd / Potol 500g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"potol.jpeg"},
-{name:"Sponge Gourd / Dharosh 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"dheros.jpeg"},
-{name:"Green Chilli / Kancha Lonka 100g",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"green_chilli.jpeg"},
-{name:"Green Peas / Motorshuti 500g",price:35,mrp:48,cat:"veg",sub:"veg",unit:"kg",img:"peas.jpeg"},
-{name:"French Beans / Bean 500g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"beans.jpeg"},
-{name:"Cluster Beans / Jhar Sim 500g",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"cluster_beans.jpeg"},
-{name:"Broad Beans / Sim 500g",price:25,mrp:35,cat:"veg",sub:"veg",unit:"kg",img:"sim.jpeg"},
-{name:"Cucumber / Shosha 500g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"cucumber.jpeg"},
-{name:"Drumstick / Sojne Data 250g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"sojne.jpeg"},
-{name:"Raw Banana / Kancha Kola 4pc",price:20,mrp:30,cat:"veg",sub:"veg",unit:"pc",img:"kancha_kola.jpeg"},
-{name:"Raw Papaya / Kancha Pepe 1pc",price:25,mrp:35,cat:"veg",sub:"veg",unit:"pc",img:"pepe.jpeg"},
-{name:"Jackfruit / Echor 1kg",price:40,mrp:55,cat:"veg",sub:"veg",unit:"kg",img:"echor.jpeg"},
-{name:"Taro Root / Kochu 500g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"kochu.jpeg"},
-{name:"Sweet Potato / Misti Aloo 500g",price:28,mrp:38,cat:"veg",sub:"veg",unit:"kg",img:"misti_aloo.jpeg"},
-{name:"Beetroot 500g",price:24,mrp:34,cat:"veg",sub:"veg",unit:"kg",img:"beetroot.jpeg"},
-{name:"Spinach / Palong Shak 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"palong.jpeg"},
-{name:"Coriander Leaves / Dhone Pata 100g",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"dhone_pata.jpeg"},
-{name:"Mint Leaves / Pudina 100g",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"pudina.jpeg"},
-{name:"Green Onion / Peyajkoli 250g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"pc",img:"peyajkoli.jpeg"},
-{name:"Turnip / Shalgam 500g",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"shalgam.jpeg"},
-{name:"Mushroom / Chhatu 200g",price:40,mrp:55,cat:"veg",sub:"veg",unit:"pc",img:"mushroom.jpeg"},
-{name:"Ginger / Ada 250g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"ada.jpeg"},
-{name:"Garlic / Rosun 250g",price:35,mrp:48,cat:"veg",sub:"veg",unit:"kg",img:"rosun.jpeg"},
-{name:"Sweet Corn / Bhutta 2pc",price:30,mrp:42,cat:"veg",sub:"veg",unit:"pc",img:"corn.jpeg"},
-{name:"Capsicum / Shimla Mirch 250g",price:30,mrp:42,cat:"veg",sub:"veg",unit:"kg",img:"capsicum.jpeg"},
-{name:"Colocasia Leaves / Kochu Pata 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"kochu_pata.jpeg"},
-{name:"Malabar Spinach / Pui Shak 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"pui_shak.jpeg"},
-{name:"Amaranth Leaves / Note Shak 1 bundle",price:15,mrp:22,cat:"veg",sub:"veg",unit:"pc",img:"note_shak.jpeg"},
-{name:"Banana Flower / Mocha 1pc",price:20,mrp:30,cat:"veg",sub:"veg",unit:"pc",img:"mocha.jpeg"},
-{name:"Banana Stem / Thor 1pc",price:18,mrp:28,cat:"veg",sub:"veg",unit:"pc",img:"thor.jpeg"},
-{name:"Ash Gourd / Chal Kumro 1kg",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"chal_kumro.jpeg"},
-{name:"Ivy Gourd / Telakucha 250g",price:20,mrp:30,cat:"veg",sub:"veg",unit:"kg",img:"telakucha.jpeg"},
-{name:"Green Beans / Borboti 250g",price:22,mrp:32,cat:"veg",sub:"veg",unit:"kg",img:"borboti.jpeg"},
-{name:"Drumstick Leaves / Sojne Pata 1 bundle",price:12,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"sojne_pata.jpeg"},
-{name:"Mustard Greens / Sorisa Shak 1 bundle",price:12,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"sorisa_shak.jpeg"},
-{name:"Water Spinach / Kolmi Shak 1 bundle",price:12,mrp:20,cat:"veg",sub:"veg",unit:"pc",img:"kolmi.jpeg"},
-{name:"Miniket Rice 25kg",price:1250,mrp:1450,cat:"veg",sub:"rice",unit:"bosta",img:"miniket.jpeg"},
-{name:"Swarna Rice 25kg",price:1050,mrp:1250,cat:"veg",sub:"rice",unit:"bosta",img:"swarna.jpeg"},
-{name:"Sona Masuri Rice 10kg",price:650,mrp:750,cat:"veg",sub:"rice",unit:"bosta",img:"sona_masuri.jpeg"},
-{name:"Gobindobhog Rice 5kg",price:550,mrp:650,cat:"veg",sub:"rice",unit:"bosta",img:"gobindobhog.jpeg"},
-{name:"Tulaipanji Rice 10kg",price:850,mrp:980,cat:"veg",sub:"rice",unit:"bosta",img:"tulaipanji.jpeg"},
-{name:"Jeera Kathi Rice 25kg",price:1450,mrp:1650,cat:"veg",sub:"rice",unit:"bosta",img:"jeera_kathi.jpeg"},
-{name:"Atap Rice 25kg",price:1100,mrp:1300,cat:"veg",sub:"rice",unit:"bosta",img:"atap.jpeg"},
-{name:"Seddho Rice 25kg",price:1000,mrp:1200,cat:"veg",sub:"rice",unit:"bosta",img:"seddho.jpeg"},
-{name:"Basmati Rice 1kg",price:110,mrp:130,cat:"veg",sub:"rice",unit:"kg",img:"basmati.jpeg"},
-{name:"Kalonunia Rice 10kg",price:900,mrp:1050,cat:"veg",sub:"rice",unit:"bosta",img:"kalonunia.jpeg"},
-{name:"Kataribhog Rice 10kg",price:800,mrp:950,cat:"veg",sub:"rice",unit:"bosta",img:"kataribhog.jpeg"},
-{name:"Radhunipagal Rice 10kg",price:780,mrp:920,cat:"veg",sub:"rice",unit:"bosta",img:"radhunipagal.jpeg"},
-{name:"Badshabhog Rice 5kg",price:480,mrp:580,cat:"veg",sub:"rice",unit:"bosta",img:"badshabhog.jpeg"},
-{name:"Radhatilak Rice 10kg",price:820,mrp:960,cat:"veg",sub:"rice",unit:"bosta",img:"radhatilak.jpeg"},
-{name:"Sitabhog Rice 10kg",price:760,mrp:900,cat:"veg",sub:"rice",unit:"bosta",img:"sitabhog.jpeg"},
-{name:"Bingo Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"bingo.jpeg"},
-{name:"Cheese Ball",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"cheese.jpeg"},
-{name:"Dew Cold Drink",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"dew.jpeg"},
-{name:"Fanta Cold Drink",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"fanta.jpeg"},
-{name:"Kurkure Masala Munch",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"kurkure.jpeg"},
-{name:"Lays Classic Salted",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"lays.jpeg"},
-{name:"Bingo Mad Angles",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"bingo.jpeg"},
-{name:"Uncle Chipps",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"uncle_chipps.jpeg"},
-{name:"Tedhe Medhe",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"tedhe_medhe.jpeg"},
-{name:"Haldiram Bhujia",price:45,mrp:55,cat:"snacks",sub:"snacks",unit:"pc",img:"haldiram_bhujia.jpeg"},
-{name:"Haldiram Aloo Bhujia 200g",price:55,mrp:65,cat:"snacks",sub:"snacks",unit:"pc",img:"aloo_bhujia.jpeg"},
-{name:"Haldiram Sev 200g",price:50,mrp:60,cat:"snacks",sub:"snacks",unit:"pc",img:"haldiram_sev.jpeg"},
-{name:"Balaji Wafers",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"balaji.jpeg"},
-{name:"Too Yumm Chips",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"too_yumm.jpeg"},
-{name:"Pringles Original",price:110,mrp:130,cat:"snacks",sub:"snacks",unit:"pc",img:"pringles.jpeg"},
-{name:"Nachos Cheese",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"nachos.jpeg"},
-{name:"Cheese Balls",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"cheese_ball.jpeg"},
-{name:"Potato Wafers",price:20,mrp:25,cat:"snacks",sub:"snacks",unit:"pc",img:"potato_wafers.jpeg"},
-{name:"Banana Chips",price:35,mrp:45,cat:"snacks",sub:"snacks",unit:"pc",img:"banana_chips.jpeg"},
-{name:"Masala Peanuts",price:30,mrp:40,cat:"snacks",sub:"snacks",unit:"pc",img:"masala_peanut.jpeg"},
-{name:"Roasted Peanuts",price:25,mrp:35,cat:"snacks",sub:"snacks",unit:"pc",img:"roasted_peanut.jpeg"},
-{name:"Dalmut",price:35,mrp:45,cat:"snacks",sub:"snacks",unit:"pc",img:"dalmut.jpeg"},
-{name:"Chanachur",price:35,mrp:45,cat:"snacks",sub:"snacks",unit:"pc",img:"chanachur.jpeg"},
-{name:"Mixture",price:40,mrp:50,cat:"snacks",sub:"snacks",unit:"pc",img:"mixture.jpeg"},
-{name:"Papad Lijjat 200g",price:45,mrp:55,cat:"snacks",sub:"snacks",unit:"pc",img:"papad.jpeg"},
-{name:"Popcorn Act II",price:25,mrp:35,cat:"snacks",sub:"snacks",unit:"pc",img:"popcorn.jpeg"},
-{name:"Fryums",price:10,mrp:15,cat:"snacks",sub:"snacks",unit:"pc",img:"fryums.jpeg"},
-{name:"Dry Red Chilli 100g",price:35,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"dry_chilli.jpeg"},
-{name:"Turmeric Powder 100g",price:32,mrp:45,cat:"veg",sub:"masala",unit:"pc",img:"haldi_powder.jpeg"},
-{name:"Cumin / Jeera 100g",price:42,mrp:55,cat:"veg",sub:"masala",unit:"pc",img:"jeera.jpeg"},
-{name:"Coriander / Dhone 100g",price:30,mrp:42,cat:"veg",sub:"masala",unit:"pc",img:"dhone.jpeg"},
-{name:"Nigella Seeds / Kalonji 100g",price:28,mrp:38,cat:"veg",sub:"masala",unit:"pc",img:"kalonji.jpeg"},
-{name:"Mustard Seeds / Sorse 100g",price:26,mrp:36,cat:"veg",sub:"masala",unit:"pc",img:"sorse.jpeg"},
-{name:"Fenugreek Seeds / Methi 100g",price:25,mrp:35,cat:"veg",sub:"masala",unit:"pc",img:"methi.jpeg"},
-{name:"Fennel Seeds / Mouri 100g",price:32,mrp:45,cat:"veg",sub:"masala",unit:"pc",img:"mouri.jpeg"},
-{name:"Radhuni 50g",price:22,mrp:32,cat:"veg",sub:"masala",unit:"pc",img:"radhuni.jpeg"},
-{name:"Panch Phoron 100g",price:30,mrp:42,cat:"veg",sub:"masala",unit:"pc",img:"panchphoron.jpeg"},
-{name:"Black Pepper / Gol Morich 50g",price:45,mrp:60,cat:"veg",sub:"masala",unit:"pc",img:"golmorich.jpeg"},
-{name:"Cinnamon / Daruchini 50g",price:38,mrp:52,cat:"veg",sub:"masala",unit:"pc",img:"daruchini.jpeg"},
-{name:"Cardamom / Elach 20g",price:48,mrp:65,cat:"veg",sub:"masala",unit:"pc",img:"elach.jpeg"},
-{name:"Cloves / Lobongo 20g",price:35,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"lobongo.jpeg"},
-{name:"Bay Leaf / Tej Pata 20g",price:15,mrp:25,cat:"veg",sub:"masala",unit:"pc",img:"tejpat.jpeg"},
-{name:"Asafoetida / Hing 10g",price:25,mrp:35,cat:"veg",sub:"masala",unit:"pc",img:"hing.jpeg"},
-{name:"Red Chilli Powder 100g",price:38,mrp:50,cat:"veg",sub:"masala",unit:"pc",img:"lonka_guro.jpeg"},
-{name:"Cumin Powder / Jeera Guro 100g",price:40,mrp:55,cat:"veg",sub:"masala",unit:"pc",img:"jeera_guro.jpeg"},
-{name:"Coriander Powder / Dhone Guro 100g",price:34,mrp:46,cat:"veg",sub:"masala",unit:"pc",img:"dhone_guro.jpeg"},
-{name:"Garam Masala 50g",price:42,mrp:58,cat:"veg",sub:"masala",unit:"pc",img:"garam_masala.jpeg"},
-{name:"Garbage Bag Roll",price:49,mrp:69,cat:"veg",sub:"garbage",unit:"pc",img:"garbage.jpeg"},
-{name:"Mortein Coil",price:42,mrp:55,cat:"veg",sub:"coil",unit:"pc",img:"mortein.jpeg"},
-{name:"Coca-Cola 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"coke.jpeg"},
-{name:"Pepsi 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"pepsi.jpeg"},
-{name:"Thums Up 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"thumsup.jpeg"},
-{name:"Sprite 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"sprite.jpeg"},
-{name:"Fanta 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"fanta.jpeg"},
-{name:"7UP 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"7up.jpeg"},
-{name:"Mountain Dew 750ml",price:40,mrp:50,cat:"snacks",sub:"cold",unit:"pc",img:"dew.jpeg"},
-{name:"Frooti Mango 160ml",price:20,mrp:25,cat:"snacks",sub:"juice",unit:"pc",img:"frooti.jpeg"},
-{name:"Maaza Mango 600ml",price:40,mrp:50,cat:"snacks",sub:"juice",unit:"pc",img:"maaza.jpeg"},
-{name:"Slice Mango 600ml",price:40,mrp:50,cat:"snacks",sub:"juice",unit:"pc",img:"slice.jpeg"},
-{name:"Appy Fizz 600ml",price:40,mrp:50,cat:"snacks",sub:"juice",unit:"pc",img:"appy.jpeg"},
-{name:"Real Fruit Juice 1L",price:110,mrp:130,cat:"snacks",sub:"juice",unit:"pc",img:"real_juice.jpeg"},
-{name:"Packaged Water 1L",price:20,mrp:20,cat:"snacks",sub:"water",unit:"pc",img:"water.jpeg"},
-{name:"Soda Water 750ml",price:25,mrp:30,cat:"snacks",sub:"water",unit:"pc",img:"soda.jpeg"},
-{name:"Amul Kool 200ml",price:25,mrp:30,cat:"snacks",sub:"water",unit:"pc",img:"amul_kool.jpeg"},
-{name:"Lassi Sweet 200ml",price:30,mrp:35,cat:"snacks",sub:"water",unit:"pc",img:"lassi.jpeg"},
-{name:"Mustard Oil / Sorisar Tel 1L",price:145,mrp:165,cat:"veg",sub:"oil",unit:"L",img:"mustard_oil.jpeg"},
-{name:"Soybean Oil 1L",price:135,mrp:155,cat:"veg",sub:"oil",unit:"L",img:"soybean_oil.jpeg"},
-{name:"Sunflower Oil 1L",price:140,mrp:160,cat:"veg",sub:"oil",unit:"L",img:"sunflower_oil.jpeg"},
-{name:"Rice Bran Oil 1L",price:150,mrp:175,cat:"veg",sub:"oil",unit:"L",img:"ricebran_oil.jpeg"},
-{name:"Groundnut Oil / Badam Tel 1L",price:180,mrp:210,cat:"veg",sub:"oil",unit:"L",img:"groundnut_oil.jpeg"},
-{name:"Sesame Oil / Til Tel 200ml",price:95,mrp:120,cat:"veg",sub:"oil",unit:"pc",img:"til_oil.jpeg"},
-{name:"Palm Oil / Palmolein Oil 1L",price:110,mrp:130,cat:"veg",sub:"oil",unit:"L",img:"palm_oil.jpeg"},
-{name:"Coconut Oil / Narikel Tel 500ml",price:140,mrp:165,cat:"veg",sub:"oil",unit:"pc",img:"coconut_oil.jpeg"},
-{name:"Olive Oil 250ml",price:299,mrp:350,cat:"veg",sub:"oil",unit:"pc",img:"olive_oil.jpeg"},
-{name:"Niger Seed Oil / Ramtil Tel 1L",price:165,mrp:190,cat:"veg",sub:"oil",unit:"L",img:"ramtil_oil.jpeg"},
-{name:"Safflower Oil / Kusum Tel 1L",price:160,mrp:185,cat:"veg",sub:"oil",unit:"L",img:"safflower_oil.jpeg"},
-{name:"Corn Oil 1L",price:155,mrp:180,cat:"veg",sub:"oil",unit:"L",img:"corn_oil.jpeg"},
-{name:"Cottonseed Oil / Binola Tel 1L",price:125,mrp:145,cat:"veg",sub:"oil",unit:"L",img:"cottonseed_oil.jpeg"},
-{name:"Canola Oil 1L",price:195,mrp:230,cat:"veg",sub:"oil",unit:"L",img:"canola_oil.jpeg"},
-{name:"Vanaspati / Dalda 500g",price:85,mrp:105,cat:"veg",sub:"oil",unit:"pc",img:"vanaspati.jpeg"},
-]
-let qtyList=items.map(()=>1);let cart={},total=0,mrpTotal=0,deliveryCharge=10,grandTotal=0,handling=2;
-let orderNo=parseInt(localStorage.getItem('roop_order_no')||'1001');
-function getOrderId(){return 'ROOP-'+orderNo;}
-document.getElementById('orderIdShow').innerText=getOrderId();
-function calcDelivery(){
- let area=document.getElementById('cArea').value;
- document.getElementById('areaName').innerText=area;
- if(area.includes('Bazar')) deliveryCharge=10; else if(area.includes('Bangalbari')) deliveryCharge=15; else if(area.includes('Other')) deliveryCharge=25; else deliveryCharge=20;
- if(total>=299) deliveryCharge=0;
- updateBill();
+
+/* =========================
+   PRODUCTS
+========================= */
+
+const products = [
+
+/* RICE */
+
+{
+    name:"Basmati Rice",
+    price:120,
+    mrp:140,
+    cat:"rice",
+    unit:"1 kg",
+    img:"images/basmati-rice.jpg"
+},
+
+{
+    name:"Tuli Punjab Rice",
+    price:70,
+    mrp:80,
+    cat:"rice",
+    unit:"1 kg",
+    img:"images/tuli-punjab.jpg"
+},
+
+{
+    name:"44 Number Rice",
+    price:55,
+    mrp:65,
+    cat:"rice",
+    unit:"1 kg",
+    img:"images/rice.jpg"
+},
+
+{
+    name:"KiliKoli Rice",
+    price:60,
+    mrp:70,
+    cat:"rice",
+    unit:"1 kg",
+    img:"images/rice.jpg"
+},
+
+{
+    name:"Miniket Rice",
+    price:75,
+    mrp:85,
+    cat:"rice",
+    unit:"1 kg",
+    img:"images/rice.jpg"
+},
+
+{
+    name:"Gobindobhog Rice",
+    price:95,
+    mrp:110,
+    cat:"rice",
+    unit:"1 kg",
+    img:"images/rice.jpg"
+},
+
+
+/* VEGETABLE */
+
+{
+    name:"Potato",
+    price:30,
+    mrp:35,
+    cat:"veg",
+    unit:"1 kg",
+    img:"images/potato.jpg"
+},
+
+{
+    name:"Onion",
+    price:35,
+    mrp:40,
+    cat:"veg",
+    unit:"1 kg",
+    img:"images/onion.jpg"
+},
+
+{
+    name:"Tomato",
+    price:40,
+    mrp:50,
+    cat:"veg",
+    unit:"1 kg",
+    img:"images/tomato.jpg"
+},
+
+{
+    name:"Brinjal",
+    price:40,
+    mrp:50,
+    cat:"veg",
+    unit:"1 kg",
+    img:"images/brinjal.jpg"
+},
+
+{
+    name:"Green Chilli",
+    price:60,
+    mrp:70,
+    cat:"veg",
+    unit:"250 g",
+    img:"images/chilli.jpg"
+},
+
+{
+    name:"Cauliflower",
+    price:45,
+    mrp:55,
+    cat:"veg",
+    unit:"1 pc",
+    img:"images/cauliflower.jpg"
+},
+
+{
+    name:"Cabbage",
+    price:35,
+    mrp:45,
+    cat:"veg",
+    unit:"1 pc",
+    img:"images/cabbage.jpg"
+},
+
+{
+    name:"Carrot",
+    price:50,
+    mrp:60,
+    cat:"veg",
+    unit:"1 kg",
+    img:"images/carrot.jpg"
+},
+
+{
+    name:"Cucumber",
+    price:40,
+    mrp:50,
+    cat:"veg",
+    unit:"1 kg",
+    img:"images/cucumber.jpg"
+},
+
+
+/* SNACKS */
+
+{
+    name:"Bingo Chips",
+    price:10,
+    mrp:10,
+    cat:"snacks",
+    unit:"1 pack",
+    img:"images/bingo.jpg"
+},
+
+{
+    name:"Lays Classic",
+    price:20,
+    mrp:20,
+    cat:"snacks",
+    unit:"1 pack",
+    img:"images/lays.jpg"
+},
+
+{
+    name:"Kurkure",
+    price:20,
+    mrp:20,
+    cat:"snacks",
+    unit:"1 pack",
+    img:"images/kurkure.jpg"
+},
+
+{
+    name:"Good Day Biscuit",
+    price:30,
+    mrp:35,
+    cat:"snacks",
+    unit:"1 pack",
+    img:"images/biscuit.jpg"
+},
+
+{
+    name:"Parle-G Biscuit",
+    price:10,
+    mrp:10,
+    cat:"snacks",
+    unit:"1 pack",
+    img:"images/biscuit.jpg"
+},
+
+{
+    name:"Marie Biscuit",
+    price:30,
+    mrp:35,
+    cat:"snacks",
+    unit:"1 pack",
+    img:"images/biscuit.jpg"
+},
+
+
+/* COLD DRINKS */
+
+{
+    name:"Coca Cola",
+    price:40,
+    mrp:45,
+    cat:"cold",
+    unit:"750 ml",
+    img:"images/coke.jpg"
+},
+
+{
+    name:"Thums Up",
+    price:40,
+    mrp:45,
+    cat:"cold",
+    unit:"750 ml",
+    img:"images/thumsup.jpg"
+},
+
+{
+    name:"Sprite",
+    price:40,
+    mrp:45,
+    cat:"cold",
+    unit:"750 ml",
+    img:"images/sprite.jpg"
+},
+
+{
+    name:"Fanta",
+    price:40,
+    mrp:45,
+    cat:"cold",
+    unit:"750 ml",
+    img:"images/fanta.jpg"
+},
+
+
+/* JUICE */
+
+{
+    name:"Frooti",
+    price:10,
+    mrp:10,
+    cat:"juice",
+    unit:"125 ml",
+    img:"images/frooti.jpg"
+},
+
+{
+    name:"Maaza",
+    price:40,
+    mrp:45,
+    cat:"juice",
+    unit:"600 ml",
+    img:"images/maaza.jpg"
+},
+
+{
+    name:"Real Fruit Juice",
+    price:110,
+    mrp:120,
+    cat:"juice",
+    unit:"1 L",
+    img:"images/real.jpg"
+},
+
+
+/* WATER */
+
+{
+    name:"Bisleri Water",
+    price:20,
+    mrp:20,
+    cat:"water",
+    unit:"1 L",
+    img:"images/bisleri.jpg"
+},
+
+{
+    name:"Kinley Water",
+    price:20,
+    mrp:20,
+    cat:"water",
+    unit:"1 L",
+    img:"images/water.jpg"
+},
+
+
+/* OIL */
+
+{
+    name:"Mustard Oil",
+    price:150,
+    mrp:170,
+    cat:"oil",
+    unit:"1 L",
+    img:"images/mustard-oil.jpg"
+},
+
+{
+    name:"Fortune Soyabean Oil",
+    price:135,
+    mrp:150,
+    cat:"oil",
+    unit:"1 L",
+    img:"images/oil.jpg"
+},
+
+{
+    name:"Sunflower Oil",
+    price:145,
+    mrp:160,
+    cat:"oil",
+    unit:"1 L",
+    img:"images/oil.jpg"
+},
+
+
+/* MASALA */
+
+{
+    name:"Turmeric Powder",
+    price:35,
+    mrp:40,
+    cat:"masala",
+    unit:"100 g",
+    img:"images/turmeric.jpg"
+},
+
+{
+    name:"Red Chilli Powder",
+    price:45,
+    mrp:50,
+    cat:"masala",
+    unit:"100 g",
+    img:"images/chilli-powder.jpg"
+},
+
+{
+    name:"Jeera Powder",
+    price:50,
+    mrp:60,
+    cat:"masala",
+    unit:"100 g",
+    img:"images/jeera.jpg"
+},
+
+{
+    name:"Garam Masala",
+    price:55,
+    mrp:65,
+    cat:"masala",
+    unit:"100 g",
+    img:"images/garam-masala.jpg"
+},
+
+{
+    name:"Coriander Powder",
+    price:35,
+    mrp:40,
+    cat:"masala",
+    unit:"100 g",
+    img:"images/dhania.jpg"
+},
+
+
+/* GARBAGE */
+
+{
+    name:"Garbage Bag Small",
+    price:40,
+    mrp:50,
+    cat:"garbage",
+    unit:"1 pack",
+    img:"images/garbage.jpg"
+},
+
+{
+    name:"Garbage Bag Medium",
+    price:60,
+    mrp:75,
+    cat:"garbage",
+    unit:"1 pack",
+    img:"images/garbage.jpg"
+},
+
+{
+    name:"Garbage Bag Large",
+    price:90,
+    mrp:110,
+    cat:"garbage",
+    unit:"1 pack",
+    img:"images/garbage.jpg"
+},
+
+
+/* COIL */
+
+{
+    name:"Mortein Coil",
+    price:35,
+    mrp:40,
+    cat:"coil",
+    unit:"1 pack",
+    img:"images/mortein.jpg"
+},
+
+{
+    name:"Good Knight Coil",
+    price:35,
+    mrp:40,
+    cat:"coil",
+    unit:"1 pack",
+    img:"images/coil.jpg"
 }
-function updateBill(){
- let savings=mrpTotal-total;
- document.getElementById('pTotal').innerText=total;
- document.getElementById('mrpTotal').innerText=mrpTotal>0?'₹'+mrpTotal:'';
- document.getElementById('dCharge').innerText=deliveryCharge;
- document.getElementById('saveTop').innerText='₹'+savings;
- document.getElementById('savedText').innerText=savings>0?'You saved ₹'+savings:'';
- document.getElementById('freeDelMsg').innerText=total>=299?'🎉 FREE Delivery Applied!':'Shop for ₹'+(299-total)+'+ to get FREE delivery!';
- grandTotal=total+deliveryCharge+handling;
- document.getElementById('gt').innerText=grandTotal;
- document.getElementById('totalBtn').innerText='₹'+grandTotal;
- document.getElementById('basketText').innerText='🧺 '+document.getElementById('bCount').innerText+' item | ₹'+grandTotal;
+
+];
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let cart = {};
+
+let total = 0;
+
+let mrpTotal = 0;
+
+let deliveryCharge = 10;
+
+let handling = 2;
+
+let grandTotal = 0;
+
+let currentCategory = "all";
+
+
+/* =========================
+   ORDER NUMBER
+========================= */
+
+let orderNo =
+    parseInt(localStorage.getItem("roop_order_no")) || 1001;
+
+
+function getOrderId(){
+
+    return "ROOP-" + orderNo;
+
 }
-let listDiv=document.getElementById('list');
-function render(all){
- listDiv.innerHTML="";
- all.forEach((p)=>{
-  let i=items.indexOf(p);let off=Math.round((1-p.price/p.mrp)*100);
-  listDiv.innerHTML+=`<div class="card"><div class="off">${off}% OFF</div><img src="${p.img}" onerror="this.src='https://via.placeholder.com/200?text=No+Image'"><h3>${p.name}</h3><div class="priceRow"><b>₹${p.price}</b><s>₹${p.mrp}</s><span>${off}% OFF</span></div><div class="qty"><button onclick="changeQ(${i},-1)">−</button><b id="q${i}">${qtyList[i]} ${p.unit}</b><button onclick="changeQ(${i},1)">+</button></div><button class="addBtn" onclick="add(${i})">ADD</button></div>`;
- });
+
+
+/* =========================
+   IMAGE FALLBACK
+========================= */
+
+function imageError(img){
+
+    img.onerror = null;
+
+    img.src =
+        "https://via.placeholder.com/300x250?text=ROOP";
+
 }
+
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function render(items){
+
+    const grid =
+        document.getElementById("productGrid");
+
+    document.getElementById("productCount").innerText =
+        items.length + " Products";
+
+
+    if(items.length === 0){
+
+        grid.innerHTML = `
+            <div class="empty">
+                <div>🔍</div>
+                <p>No products found</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let html = "";
+
+
+    items.forEach((p,index)=>{
+
+        html += `
+
+        <div class="product">
+
+            <img
+                class="productImg"
+                src="${p.img}"
+                alt="${p.name}"
+                onerror="imageError(this)"
+            >
+
+            <div class="productName">
+                ${p.name}
+            </div>
+
+            <div class="productUnit">
+                ${p.unit}
+            </div>
+
+            <div class="priceRow">
+
+                <div>
+
+                    <span class="price">
+                        ₹${p.price}
+                    </span>
+
+                    ${
+                        p.mrp > p.price
+                        ?
+                        `<s class="mrp">₹${p.mrp}</s>`
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                <button
+                    class="addBtn"
+                    onclick="addProduct(${index}, '${p.name.replace(/'/g,"\\'")}')"
+                >
+                    ADD
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    grid.innerHTML = html;
+
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+function filterCat(cat,btn){
+
+    currentCategory = cat;
+
+
+    document
+        .querySelectorAll(".catBtn")
+        .forEach(x=>{
+            x.classList.remove("active");
+        });
+
+
+    btn.classList.add("active");
+
+    applyFilters();
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function doSearch(){
+
+    applyFilters();
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
 function applyFilters(){
- let s=document.getElementById('searchBox').value.toLowerCase();
- let f=items.filter(x=>{let m=curIcon=='all'||x.sub==curIcon;return m&&x.name.toLowerCase().includes(s);});
- render(f);
+
+    let search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let filtered =
+        products.filter(p=>{
+
+            let categoryMatch =
+                currentCategory === "all" ||
+                p.cat === currentCategory;
+
+
+            let searchMatch =
+                !search ||
+                p.name.toLowerCase().includes(search);
+
+
+            return categoryMatch && searchMatch;
+
+        });
+
+
+    render(filtered);
+
 }
-function changeQ(i,d){qtyList[i]=Math.max(1,qtyList[i]+d);document.getElementById('q'+i).innerText=qtyList[i]+" "+items[i].unit;}
-function filterIcon(sub,el){document.querySelectorAll('.catItem').forEach(b=>b.classList.remove('active'));el.classList.add('active');curIcon=sub;applyFilters();}
-function doSearch(){applyFilters();}
-function closeCart(){document.getElementById('cartPage').style.display='none';}
-function showCart(){document.getElementById('orderIdShow').innerText=getOrderId();document.getElementById('cartPage').style.display='flex';}
-function add(i){let p=items[i];if(!cart[p.name])cart[p.name]={q:0,price:p.price,mrp:p.mrp};cart[p.name].q+=qtyList[i];update();}
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+function addProduct(index,name){
+
+    let p =
+        products[index];
+
+
+    if(cart[p.name]){
+
+        cart[p.name].q++;
+
+    }else{
+
+        cart[p.name] = {
+
+            name:p.name,
+
+            price:p.price,
+
+            mrp:p.mrp,
+
+            unit:p.unit,
+
+            q:1
+
+        };
+
+    }
+
+
+    update();
+
+
+    /* Small feedback */
+
+    const old =
+        event.target.innerText;
+
+    event.target.innerText =
+        "✓ ADDED";
+
+    setTimeout(()=>{
+
+        event.target.innerText =
+            old;
+
+    },700);
+
+}
+
+
+/* =========================
+   INCREMENT
+========================= */
+
+function incCart(name){
+
+    if(cart[name]){
+
+        cart[name].q++;
+
+    }
+
+    update();
+
+}
+
+
+/* =========================
+   DECREMENT
+========================= */
+
+function decCart(name){
+
+    if(!cart[name]) return;
+
+
+    if(cart[name].q > 1){
+
+        cart[name].q--;
+
+    }else{
+
+        delete cart[name];
+
+    }
+
+
+    update();
+
+}
+
+
+/* =========================
+   REMOVE
+========================= */
+
+function removeCart(name){
+
+    delete cart[name];
+
+    update();
+
+}
+
+
+/* =========================
+   UPDATE CART
+========================= */
+
 function update(){
- total=0;mrpTotal=0;let c=0;
- for(let k in cart){total+=cart[k].q*cart[k].price;mrpTotal+=cart[k].q*cart[k].mrp;c+=cart[k].q;}
- document.getElementById('bCount').innerText=c;
- document.getElementById('itemCount').innerText=c;
- document.getElementById('basket').style.display=c>0?"flex":"none";
- calcDelivery();
- let h="";
- for(let k in cart){
-  h+=`<div style="background:#fff;padding:12px;border-radius:12px;margin-bottom:10px;border:1px solid #eee">
-   <div style="display:flex;justify-content:space-between;align-items:center">
-    <div><b>${k}</b><br><small style="color:#666">₹${cart[k].price} x ${cart[k].q}</small></div>
-    <b>₹${cart[k].q*cart[k].price}</b>
-   </div>
-   <div style="display:flex;gap:8px;align-items:center;margin-top:10px;background:#fff7f0;border:1px solid #ffd1a6;border-radius:20px;padding:4px 8px;width:fit-content">
-    <button onclick="decCart('${k.replace(/'/g,"\\'")}')" style="width:26px;height:26px;border-radius:50%;border:0;background:#FF6A00;color:#fff;font-weight:800">−</button>
-    <b style="min-width:30px;text-align:center">${cart[k].q}</b>
-    <button onclick="incCart('${k.replace(/'/g,"\\'")}')" style="width:26px;height:26px;border-radius:50%;border:0;background:#FF6A00;color:#fff;font-weight:800">+</button>
-    <span onclick="removeCart('${k.replace(/'/g,"\\'")}')" style="margin-left:10px;color:#ff4444;font-size:12px;font-weight:800;cursor:pointer">🗑️ Remove</span>
-   </div>
-  </div>`;
- }
- document.getElementById('cartItems').innerHTML=h||'<p style="text-align:center;color:#999;padding:20px">Cart empty - Add products!</p>';
+
+    total = 0;
+
+    mrpTotal = 0;
+
+    let c = 0;
+
+
+    for(let k in cart){
+
+        total +=
+            cart[k].q *
+            cart[k].price;
+
+
+        mrpTotal +=
+            cart[k].q *
+            cart[k].mrp;
+
+
+        c +=
+            cart[k].q;
+
+    }
+
+
+    document.getElementById("bCount").innerText = c;
+
+    document.getElementById("itemCount").innerText = c;
+
+    document.getElementById("cartBadge").innerText = c;
+
+
+    document.getElementById("cartBadge").style.display =
+        c > 0 ? "flex" : "none";
+
+
+    document.getElementById("basket").style.display =
+        c > 0 ? "flex" : "none";
+
+
+    calcDelivery();
+
+
+    let h = "";
+
+
+    for(let k in cart){
+
+        const safeName =
+            k.replace(/\\/g,"\\\\")
+             .replace(/'/g,"\\'");
+
+
+        h += `
+
+        <div class="cartItem">
+
+            <div class="cartItemTop">
+
+                <div>
+
+                    <div class="cartItemName">
+                        ${cart[k].name}
+                    </div>
+
+                    <div class="cartItemPrice">
+                        ₹${cart[k].price} × ${cart[k].q}
+                        • ${cart[k].unit}
+                    </div>
+
+                </div>
+
+
+                <div class="cartItemTotal">
+                    ₹${cart[k].q * cart[k].price}
+                </div>
+
+            </div>
+
+
+            <div class="quantityBox">
+
+                <button
+                    class="qtyBtn"
+                    onclick="decCart('${safeName}')"
+                >
+                    −
+                </button>
+
+
+                <span class="qtyNumber">
+                    ${cart[k].q}
+                </span>
+
+
+                <button
+                    class="qtyBtn"
+                    onclick="incCart('${safeName}')"
+                >
+                    +
+                </button>
+
+
+                <span
+                    class="removeBtn"
+                    onclick="removeCart('${safeName}')"
+                >
+                    🗑️ Remove
+                </span>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }
+
+
+    document.getElementById("cartItems").innerHTML =
+        h ||
+        `
+        <p style="
+            text-align:center;
+            color:#999;
+            padding:18px;
+            font-size:12px
+        ">
+            Cart empty - Add products!
+        </p>
+        `;
+
+
+    document.getElementById("orderIdShow").innerText =
+        getOrderId();
+
 }
-function incCart(name){cart[name].q++;update();}
-function decCart(name){if(cart[name].q>1) cart[name].q--; else delete cart[name];update();}
-function removeCart(name){delete cart[name];update();}
+
+
+/* =========================
+   DELIVERY
+========================= */
+
+function calcDelivery(){
+
+    let area =
+        document.getElementById("cArea").value;
+
+
+    document.getElementById("areaName").innerText =
+        area;
+
+
+    if(area === "Hemtabad Bazar"){
+
+        deliveryCharge = 10;
+
+    }
+    else if(area === "Bangalbari"){
+
+        deliveryCharge = 15;
+
+    }
+    else if(area === "Baharail"){
+
+        deliveryCharge = 20;
+
+    }
+    else{
+
+        deliveryCharge = 25;
+
+    }
+
+
+    if(total >= 299){
+
+        deliveryCharge = 0;
+
+    }
+
+
+    updateBill();
+
+}
+
+
+/* =========================
+   PAYMENT TEXT
+========================= */
+
+function updatePaymentText(){
+
+    let pay =
+        document.querySelector(
+            'input[name="pay"]:checked'
+        ).value;
+
+
+    document.getElementById("grandPayText").innerText =
+        pay;
+
+
+    updateBill();
+
+}
+
+
+/* =========================
+   BILL
+========================= */
+
+function updateBill(){
+
+    let savings =
+        Math.max(0,mrpTotal-total);
+
+
+    document.getElementById("pTotal").innerText =
+        total;
+
+
+    document.getElementById("mrpTotal").innerText =
+        mrpTotal > total
+        ?
+        "₹" + mrpTotal
+        :
+        "";
+
+
+    document.getElementById("dCharge").innerText =
+        deliveryCharge;
+
+
+    document.getElementById("saveTop").innerText =
+        "₹" + savings;
+
+
+    document.getElementById("savedText").innerText =
+        savings > 0
+        ?
+        "You saved ₹" + savings
+        :
+        "";
+
+
+    document.getElementById("freeDelMsg").innerText =
+
+        total >= 299
+
+        ?
+        "🎉 FREE Delivery Applied!"
+
+        :
+        "Shop for ₹" +
+        (299-total) +
+        "+ to get FREE delivery!";
+
+
+    grandTotal =
+        total +
+        deliveryCharge +
+        handling;
+
+
+    document.getElementById("gt").innerText =
+        grandTotal;
+
+
+    document.getElementById("totalBtn").innerText =
+        "₹" + grandTotal;
+
+
+    document.getElementById("basketText").innerText =
+        "🧺 " +
+        document.getElementById("bCount").innerText +
+        " item | ₹" +
+        grandTotal;
+
+}
+
+
+/* =========================
+   SHOW CART
+========================= */
+
+function showCart(){
+
+    update();
+
+
+    document.getElementById("cartPage").style.display =
+        "flex";
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================
+   CLOSE CART
+========================= */
+
+function closeCart(){
+
+    document.getElementById("cartPage").style.display =
+        "none";
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================
+   SEND WHATSAPP
+========================= */
+
 function sendWA(){
- if(Object.keys(cart).length===0){
-  alert("Cart is empty - Add some products!");
-  return;
- }
- let n=document.getElementById('cName').value.trim();
- let ph=document.getElementById('cPhone').value.trim();
- let a=document.getElementById('cAddr').value.trim();
- let area=document.getElementById('cArea').value;
- let pay=document.querySelector('input[name="pay"]:checked').value;
 
-  if(!n ||!ph ||!a){
-  alert("Name, Phone and Address din");
-  return;
- }
+    if(Object.keys(cart).length === 0){
 
- if(!/^[6-9]\d{9}$/.test(ph)){
-  alert("Valid 10-digit phone number din");
-  return;
- }
+        alert("Cart is empty");
 
- let orderId=getOrderId();
- let msg=`*🛒 NEW ORDER - ${orderId}*%0A%0A*Customer:* ${n}%0A*Phone:* ${ph}%0A*Area:* ${area}%0A*Address:* ${a}%0A*Payment:* ${pay}%0A%0A*--- Items ---*%0A`;
- for(let k in cart){msg+=`• ${k} x ${cart[k].q} = Rs.${cart[k].q*cart[k].price}%0A`;}
- msg+=`%0A*Product Total:* Rs.${total}%0A*Delivery:* Rs.${deliveryCharge}%0A*Handling:* Rs.${handling}%0A*GRAND TOTAL:* Rs.${grandTotal}%0A`;
+        return;
 
- // WhatsApp khulche kina check
- let waUrl=`https://wa.me/917584036364?text=${msg}`;
- let win=window.open(waUrl,'_blank');
+    }
 
- if(!win){
-  alert("WhatsApp khulche na! Popup block ache. Browser er popup allow korun.");
-  return; // Order Received dekhabe na
- }
 
- // WhatsApp khullei Order Received
- document.getElementById('successId').innerText=orderId;
- document.getElementById('orderSuccess').style.display='flex';
- orderNo++;localStorage.setItem('roop_order_no',orderNo);
- cart={};total=0;mrpTotal=0;update();closeCart();
+    let n =
+        document.getElementById("cName")
+        .value
+        .trim();
+
+
+    let ph =
+        document.getElementById("cPhone")
+        .value
+        .trim();
+
+
+    let a =
+        document.getElementById("cAddr")
+        .value
+        .trim();
+
+
+    let area =
+        document.getElementById("cArea")
+        .value;
+
+
+    let pay =
+        document.querySelector(
+            'input[name="pay"]:checked'
+        ).value;
+
+
+    if(!n || !ph || !a){
+
+        alert(
+            "Name, Phone and Address din"
+        );
+
+        return;
+
+    }
+
+
+    if(!/^[6-9]\d{9}$/.test(ph)){
+
+        alert(
+            "Valid 10-digit phone number din"
+        );
+
+        return;
+
+    }
+
+
+    let orderId =
+        getOrderId();
+
+
+    let savings =
+        Math.max(0,mrpTotal-total);
+
+
+    let msg =
+
+`🛒 NEW ORDER - ${orderId}
+
+Customer: ${n}
+Phone: ${ph}
+Area: ${area}
+Address: ${a}
+Payment: ${pay}
+
+--- ITEMS ---
+`;
+
+
+    for(let k in cart){
+
+        msg +=
+        `• ${cart[k].name} × ${cart[k].q} = Rs.${cart[k].q * cart[k].price}\n`;
+
+    }
+
+
+    msg +=
+
+`
+--- BILL DETAILS ---
+Product Total: Rs.${total}
+MRP Total: Rs.${mrpTotal}
+You Saved: Rs.${savings}
+Delivery Charge: Rs.${deliveryCharge}
+Handling Charge: Rs.${handling}
+GRAND TOTAL (${pay}): Rs.${grandTotal}
+
+ROOP - All in One Delivery`;
+
+
+    let waUrl =
+        "https://wa.me/917584036364?text=" +
+        encodeURIComponent(msg);
+
+
+    let win =
+        window.open(
+            waUrl,
+            "_blank"
+        );
+
+
+    /* WhatsApp didn't open */
+
+    if(!win){
+
+        alert(
+            "⚠️ WhatsApp khulche na! Popup block ache - Please allow popup & try again."
+        );
+
+        return;
+
+    }
+
+
+    /* SUCCESS */
+
+    document.getElementById("successId").innerText =
+        orderId;
+
+
+    document.getElementById("orderSuccess").style.display =
+        "flex";
+
+
+    /* NEXT ORDER NUMBER */
+
+    orderNo++;
+
+    localStorage.setItem(
+        "roop_order_no",
+        orderNo
+    );
+
+
+    /* CLEAR CART */
+
+    cart = {};
+
+    total = 0;
+
+    mrpTotal = 0;
+
+
+    update();
+
+    closeCart();
+
 }
-render(items);
+
+
+/* =========================
+   CLOSE SUCCESS
+========================= */
+
+function closeSuccess(){
+
+    document.getElementById("orderSuccess").style.display =
+        "none";
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+render(products);
+
+update();
+
 </script>
+
 </body>
 </html>
